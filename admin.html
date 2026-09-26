@@ -9,12 +9,22 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=202609270204">
 </head>
 <body class="app-body">
 
+<!-- Shown while a saved session is being checked, so a refresh never flashes
+     the login form at someone who is already signed in. -->
+<div id="bootView">
+  <div class="boot">
+    <div class="boot-mark">शि</div>
+    <div class="boot-bar"><span></span></div>
+    <p class="muted">नोंदवही उघडत आहे…</p>
+  </div>
+</div>
+
 <!-- ------------------------------------------------------------- login -->
-<div id="loginView">
+<div id="loginView" class="hide">
   <div class="wrap">
     <div class="auth-card">
       <div class="mark brand-mark" style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#e2731c,#6e1d1d);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:1.5rem;font-weight:700;margin:0 auto 16px">शि</div>
@@ -148,7 +158,7 @@
   </div>
 </div>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/admin.js"></script>
+<script src="assets/js/config.js?v=202609270204"></script>
+<script src="assets/js/admin.js?v=202609270204"></script>
 </body>
 </html>

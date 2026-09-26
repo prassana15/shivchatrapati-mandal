@@ -38,12 +38,30 @@
     flash($('loginMsg'), 'API URL सेट केलेला नाही. assets/js/config.js तपासा.', 'err');
   }
 
-  var saved = null;
-  try { saved = localStorage.getItem('mandalToken'); } catch (e) { /* private mode */ }
+  /* ------------------------------------------------------ session restore */
+
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+  function recall(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function forget(k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } }
+
+  function showLogin() {
+    $('bootView').classList.add('hide');
+    $('loginView').classList.remove('hide');
+    $('email').focus();
+  }
+
+  var saved = recall('mandalToken');
   if (saved && U.configured()) {
-    U.post({ action: 'ping', token: saved }).then(function (r) {
-      if (r && r.ok) { TOKEN = saved; USER = r.user; CFG = r.config; enter(); }
-    }).catch(function () { /* stay on login */ });
+    // Keep the splash up until we know — otherwise a refresh flashes the
+    // login form at someone who is already signed in.
+    U.post({ action: 'ping', token: saved })
+      .then(function (r) {
+        if (r && r.ok) { TOKEN = saved; USER = r.user; CFG = r.config; enter(); }
+        else { forget('mandalToken'); showLogin(); }
+      })
+      .catch(showLogin);
+  } else {
+    showLogin();
   }
 
   $('loginBtn').addEventListener('click', doLogin);
@@ -103,7 +121,7 @@
         btn.disabled = false; btn.textContent = 'लॉगिन करा';
         if (!r.ok) { flash($('loginMsg'), r.error, 'err'); return; }
         TOKEN = r.token; USER = r.user; CFG = r.config;
-        try { localStorage.setItem('mandalToken', TOKEN); } catch (e) { /* ignore */ }
+        store('mandalToken', TOKEN);
         enter();
       })
       .catch(function () {
@@ -114,17 +132,24 @@
 
   $('logoutBtn').addEventListener('click', function () {
     U.post({ action: 'logout', token: TOKEN });
-    try { localStorage.removeItem('mandalToken'); } catch (e) { /* ignore */ }
+    forget('mandalToken');
+    forget('mandalTab');
+    forget('mandalYear');
     location.reload();
   });
 
   function enter() {
+    $('bootView').classList.add('hide');
     $('loginView').classList.add('hide');
     $('appView').classList.remove('hide');
     $('whoName').textContent = USER.name;
     $('whoRole').textContent = { admin: 'ॲडमिन', entry: 'नोंद', view: 'फक्त पाहणे' }[USER.role] || USER.role;
 
-    YEAR = CFG.activeYear;
+    // Come back to the year and tab you were last on, not always to the top.
+    var lastYear = recall('mandalYear');
+    YEAR = (lastYear && (CFG.years || []).indexOf(lastYear) > -1)
+      ? lastYear : CFG.activeYear;
+
     var sel = $('yearSel');
     sel.innerHTML = (CFG.years || [CFG.activeYear]).map(function (y) {
       return '<option value="' + U.esc(y) + '"' +
@@ -132,10 +157,12 @@
     }).join('');
     sel.addEventListener('change', function () {
       YEAR = sel.value;
+      store('mandalYear', YEAR);
       switchTab(TAB);
     });
 
-    switchTab('members');
+    var lastTab = recall('mandalTab');
+    switchTab(CFG.registers[lastTab] || lastTab === 'summary' ? lastTab : 'members');
   }
 
   /** New entries only ever go into the active year. Older years are read-only. */
@@ -160,6 +187,7 @@
   function switchTab(tab) {
     TAB = tab;
     EDITING = null;
+    store('mandalTab', tab);
     Array.prototype.forEach.call($('tabs').querySelectorAll('button'), function (b) {
       b.classList.toggle('on', b.dataset.tab === tab);
     });

@@ -488,6 +488,35 @@ section.alt { background: var(--cream-2); }
 
 .app-body { background: var(--cream-2); }
 
+/* ------------------------------------------------- session-restore splash */
+
+.boot {
+  min-height: 70vh; display: grid; place-content: center; justify-items: center;
+  gap: 16px; text-align: center;
+}
+.boot-mark {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: linear-gradient(145deg, var(--saffron), var(--maroon));
+  color: #fff; display: grid; place-items: center;
+  font-family: var(--display); font-size: 1.6rem; font-weight: 700;
+  box-shadow: var(--shadow-md);
+}
+.boot-bar {
+  width: 160px; height: 3px; border-radius: 99px;
+  background: var(--line); overflow: hidden;
+}
+.boot-bar span {
+  display: block; width: 40%; height: 100%; border-radius: 99px;
+  background: var(--saffron); animation: boot-slide 1.1s ease-in-out infinite;
+}
+@keyframes boot-slide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .boot-bar span { animation: none; width: 100%; }
+}
+
 .auth-card {
   width: 100%; max-width: 400px; margin: 8vh auto; background: var(--white);
   border: 1px solid var(--line); border-radius: var(--r-lg);
