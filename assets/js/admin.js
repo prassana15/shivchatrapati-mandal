@@ -4,18 +4,20 @@
   var U = window.MandalUtil;
 
   var TOKEN = null, USER = null, CFG = null, TAB = 'members', EDITING = null;
-  var ROWS = [];
+  var ROWS = [], YEAR = null;
 
   /* Marathi labels for the English column keys the sheet uses. */
   var LABELS = {
     Date: 'तारीख', Name: 'नाव', Amount: 'रक्कम', Mode: 'पद्धत',
-    Reason: 'खर्चाचे कारण', Karyakarta: 'मध्यस्थी कार्यकर्ता',
+    Phone: 'संपर्क क्रमांक', Reason: 'खर्चाचे कारण',
+    Karyakarta: 'मध्यस्थी कार्यकर्ता', Purpose: 'कशासाठी', Kind: 'स्वरूप',
     Remarks: 'शेरा', Receipt: 'पावती', Voucher: 'व्हाउचर'
   };
 
   var TABLE_COLS = {
-    members:  ['Receipt', 'Date', 'Name', 'Mode', 'Amount'],
-    area:     ['Receipt', 'Date', 'Name', 'Mode', 'Amount'],
+    members:  ['Receipt', 'Date', 'Name', 'Phone', 'Karyakarta', 'Mode', 'Amount'],
+    area:     ['Receipt', 'Date', 'Name', 'Phone', 'Karyakarta', 'Mode', 'Amount'],
+    sponsors: ['Receipt', 'Date', 'Name', 'Phone', 'Purpose', 'Kind', 'Amount'],
     expenses: ['Voucher', 'Date', 'Reason', 'Karyakarta', 'Mode', 'Amount']
   };
 
@@ -46,11 +48,57 @@
 
   $('loginBtn').addEventListener('click', doLogin);
   $('pin').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+  $('email').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('pin').focus(); });
+
+  /* Show / hide the password. Typing on a phone at a पंडाल in the dark, this
+     is the difference between logging in and giving up. */
+  (function () {
+    var btn = $('pwToggle'), field = $('pin');
+
+    btn.addEventListener('click', function () {
+      var show = field.type === 'password';
+      field.type = show ? 'text' : 'password';
+      btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+      var label = show ? 'पासवर्ड लपवा' : 'पासवर्ड दाखवा';
+      btn.setAttribute('aria-label', label);
+      btn.title = label;
+
+      // Keep the caret where it was instead of jumping to the start.
+      var pos = field.value.length;
+      field.focus();
+      try { field.setSelectionRange(pos, pos); } catch (e) { /* not supported */ }
+    });
+
+    // Never leave a password on screen after walking away from the phone.
+    field.addEventListener('blur', function () {
+      if (field.type !== 'text') return;
+      setTimeout(function () {
+        if (document.activeElement === btn || document.activeElement === field) return;
+        field.type = 'password';
+        btn.setAttribute('aria-pressed', 'false');
+        btn.setAttribute('aria-label', 'पासवर्ड दाखवा');
+        btn.title = 'पासवर्ड दाखवा';
+      }, 100);
+    });
+  })();
 
   function doLogin() {
+    // No API url yet means the Apps Script has not been deployed. Say that,
+    // instead of blaming the user's internet connection.
+    if (!U.configured()) {
+      flash($('loginMsg'),
+        'नोंदवही अद्याप जोडलेली नाही. Apps Script deploy करून त्याची URL ' +
+        'assets/js/config.js मध्ये टाका.', 'err');
+      return;
+    }
+
     var btn = $('loginBtn');
     btn.disabled = true; btn.textContent = 'थांबा…';
-    U.post({ action: 'login', email: $('email').value, pin: $('pin').value })
+    U.post({
+      action: 'login',
+      userId: $('email').value.trim().toLowerCase(),
+      password: $('pin').value
+    })
       .then(function (r) {
         btn.disabled = false; btn.textContent = 'लॉगिन करा';
         if (!r.ok) { flash($('loginMsg'), r.error, 'err'); return; }
@@ -75,9 +123,23 @@
     $('appView').classList.remove('hide');
     $('whoName').textContent = USER.name;
     $('whoRole').textContent = { admin: 'ॲडमिन', entry: 'नोंद', view: 'फक्त पाहणे' }[USER.role] || USER.role;
-    $('yearChip').textContent = CFG.year;
+
+    YEAR = CFG.activeYear;
+    var sel = $('yearSel');
+    sel.innerHTML = (CFG.years || [CFG.activeYear]).map(function (y) {
+      return '<option value="' + U.esc(y) + '"' +
+        (y === YEAR ? ' selected' : '') + '>' + U.esc(y) + '</option>';
+    }).join('');
+    sel.addEventListener('change', function () {
+      YEAR = sel.value;
+      switchTab(TAB);
+    });
+
     switchTab('members');
   }
+
+  /** New entries only ever go into the active year. Older years are read-only. */
+  function isPastYear() { return YEAR !== CFG.activeYear; }
 
   function fail(r) {
     if (r && r.expired) {
@@ -105,25 +167,63 @@
     var summary = tab === 'summary';
     $('summaryPanel').classList.toggle('hide', !summary);
     $('listPanel').classList.toggle('hide', summary);
+    // The form stays visible in a past year — saving there raises a popup
+    // explaining why, which is clearer than the form silently vanishing.
     $('formPanel').classList.toggle('hide', summary || USER.role === 'view');
 
+    showYearBanner();
     if (summary) { loadSummary(); return; }
 
-    $('listTitle').textContent = CFG.registers[tab].label;
+    $('listTitle').textContent = CFG.registers[tab].label + ' — ' + YEAR;
     buildForm();
     loadList();
+  }
+
+  function showYearBanner() {
+    var el = $('yearBanner');
+    if (!isPastYear()) { el.classList.add('hide'); return; }
+    el.classList.remove('hide');
+    el.textContent = YEAR + ' च्या जुन्या नोंदी पाहत आहात. नवीन नोंद ' +
+      CFG.activeYear + ' मध्ये करण्यासाठी वरून वर्ष बदला.';
   }
 
   /* ================================================================ form */
 
   function buildForm() {
     var fields = CFG.registers[TAB].fields;
-    $('formFields').innerHTML = fields.map(function (f) {
+    // One shared datalist feeds the कार्यकर्ता box on every register.
+    var list = '<datalist id="karyakartaList">' +
+      (CFG.karyakarta || []).map(function (n) {
+        return '<option value="' + U.esc(n) + '"></option>';
+      }).join('') + '</datalist>';
+
+    // वर्ष is shown but locked: a नोंद always belongs to the active year, so
+    // nobody can quietly file this year's खर्च into a closed year.
+    var yearField =
+      '<div><label for="f_Year">वर्ष</label>' +
+      '<input id="f_Year" type="text" value="' + U.esc(CFG.activeYear) + '" ' +
+      'readonly tabindex="-1" class="locked" ' +
+      'title="नोंदी चालू वर्षातच होतात"></div>';
+
+    $('formFields').innerHTML = list + yearField + fields.map(function (f) {
       var id = 'f_' + f, input;
-      if (f === 'Mode') {
-        input = '<select id="' + id + '">' + CFG.modes.map(function (m) {
-          return '<option value="' + U.esc(m) + '">' + U.esc(m) + '</option>';
-        }).join('') + '</select>';
+      if (f === 'Mode' || f === 'Purpose' || f === 'Kind') {
+        var opts = f === 'Mode' ? CFG.modes
+          : f === 'Purpose' ? (CFG.purposes || [])
+          : (CFG.kinds || []);
+        input = '<select id="' + id + '">' +
+          (f === 'Purpose' ? '<option value="">— निवडा —</option>' : '') +
+          opts.map(function (m) {
+            return '<option value="' + U.esc(m) + '">' + U.esc(m) + '</option>';
+          }).join('') + '</select>';
+      } else if (f === 'Karyakarta') {
+        // A list, not a locked dropdown — a new कार्यकर्ता can be typed in
+        // on the spot without anyone editing the sheet first.
+        input = '<input id="' + id + '" type="text" list="karyakartaList" ' +
+          'autocomplete="off" placeholder="नाव निवडा किंवा लिहा">';
+      } else if (f === 'Phone') {
+        input = '<input id="' + id + '" type="tel" inputmode="numeric" ' +
+          'maxlength="13" placeholder="ऐच्छिक">';
       } else if (f === 'Amount') {
         input = '<input id="' + id + '" type="number" min="1" step="1" inputmode="numeric">';
       } else if (f === 'Date') {
@@ -140,7 +240,17 @@
   }
 
   $('saveBtn').addEventListener('click', function () {
-    var rec = {};
+    // Guard: the viewing year drifted off the active year, so a new नोंद would
+    // land somewhere the कार्यकर्ता did not intend. Stop and say so.
+    if (!EDITING && isPastYear()) {
+      alert('तुम्ही ' + YEAR + ' या जुन्या वर्षाच्या नोंदी पाहत आहात.\n\n' +
+        'नवीन नोंद फक्त ' + CFG.activeYear + ' मध्ये करता येते.\n' +
+        'वरील वर्ष ' + CFG.activeYear + ' करा आणि पुन्हा प्रयत्न करा.');
+      $('yearSel').focus();
+      return;
+    }
+
+    var rec = { Year: CFG.activeYear };
     CFG.registers[TAB].fields.forEach(function (f) { rec[f] = $('f_' + f).value; });
     if (EDITING) rec.ID = EDITING;
 
@@ -204,7 +314,7 @@
     $('listCount').textContent = 'लोड होत आहे…';
     U.post({
       action: 'list', token: TOKEN, register: TAB,
-      filter: { q: $('q').value, from: $('from').value, to: $('to').value }
+      filter: { year: YEAR, q: $('q').value, from: $('from').value, to: $('to').value }
     }).then(function (r) {
       if (fail(r)) return;
       if (!r.ok) { $('listCount').textContent = r.error; return; }
@@ -231,6 +341,12 @@
         var tds = cols.map(function (c) {
           if (c === 'Amount') return '<td class="amt">' + U.money(row.Amount) + '</td>';
           if (c === 'Date') return '<td>' + U.esc(U.dateOut(row.Date)) + '</td>';
+          if (c === 'Phone') {
+            // Tappable on a phone, so a कार्यकर्ता can ring a वर्गणीदार back.
+            return row.Phone
+              ? '<td><a href="tel:+91' + U.esc(row.Phone) + '">' + U.esc(row.Phone) + '</a></td>'
+              : '<td></td>';
+          }
           return '<td>' + U.esc(row[c]) + '</td>';
         }).join('');
         var act = canEdit
@@ -289,7 +405,7 @@
     var blob = new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = TAB + '-' + CFG.year + '.csv';
+    a.download = TAB + '-' + YEAR + '.csv';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -300,21 +416,33 @@
 
   function loadSummary() {
     $('sumStats').innerHTML = '<p class="muted">लोड होत आहे…</p>';
-    U.post({ action: 'summary', token: TOKEN }).then(function (s) {
+    U.post({ action: 'summary', token: TOKEN, year: YEAR }).then(function (s) {
       if (fail(s)) return;
       if (!s.ok) { $('sumStats').innerHTML = '<p class="muted">' + U.esc(s.error) + '</p>'; return; }
 
+      var sub = 'सभासद ' + U.moneyShort(s.memberTotal) +
+        ' · क्षेत्र ' + U.moneyShort(s.areaTotal) +
+        (s.sponsorTotal ? ' · देणगी ' + U.moneyShort(s.sponsorTotal) : '');
+
       $('sumStats').innerHTML =
-        stat('एकूण जमा', U.money(s.income), (s.memberCount + s.areaCount) + ' नोंदी', '') +
+        stat('एकूण जमा', U.money(s.income),
+          (s.memberCount + s.areaCount + (s.sponsorCount || 0)) + ' नोंदी', '') +
         stat('एकूण खर्च', U.money(s.spent), s.expenseCount + ' नोंदी', '') +
         stat(s.balance < 0 ? 'तूट' : 'शिल्लक', U.money(Math.abs(s.balance)),
-          'सभासद ' + U.moneyShort(s.memberTotal) + ' · क्षेत्र ' + U.moneyShort(s.areaTotal),
-          s.balance < 0 ? 'bad' : 'good');
+          sub, s.balance < 0 ? 'bad' : 'good');
+
+      if (s.sponsorKindTotal) {
+        $('sumStats').insertAdjacentHTML('afterend',
+          '<p class="muted" style="margin:12px 0 0">वस्तू स्वरूपात देणगी: <b>' +
+          U.money(s.sponsorKindTotal) + '</b> — ही रक्कम जमेत धरलेली नाही.</p>');
+      }
 
       bars($('sumMode'), s.byMode);
       bars($('sumExpenses'), s.topExpenses);
       bars($('sumDonors'), s.topDonors);
       bars($('sumKaryakarta'), s.byKaryakarta);
+      bars($('sumPurpose'), s.byPurpose);
+      bars($('sumSponsors'), s.topSponsors);
     }).catch(function () {
       $('sumStats').innerHTML = '<p class="muted">हिशोब आणता आला नाही.</p>';
     });

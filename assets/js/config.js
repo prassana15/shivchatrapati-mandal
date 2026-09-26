@@ -35,6 +35,18 @@ window.MandalUtil = {
     return m ? m[3] + '/' + m[2] + '/' + m[1] : (s || '');
   },
 
+  /** 11 -> ११ */
+  dev: function (n) {
+    return String(n).replace(/\d/g, function (d) { return '०१२३४५६७८९'[d]; });
+  },
+
+  /** 11 -> "११ वे पर्व". Marathi ordinals are irregular below five. */
+  parva: function (n) {
+    if (!n || n < 1) return '';
+    var suffix = { 1: 'ले', 2: 'रे', 3: 'रे', 4: 'थे' }[n] || 'वे';
+    return this.dev(n) + ' ' + suffix + ' पर्व';
+  },
+
   esc: function (s) {
     return String(s === null || s === undefined ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')

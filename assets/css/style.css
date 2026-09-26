@@ -70,13 +70,23 @@ p  { margin: 0 0 1rem; }
 
 /* ---------------------------------------------------------------- header */
 
+/* Floats clear over the hero, then settles into a solid bar once you scroll
+   past it — set by the .scrolled class from site.js. */
 .site-header {
-  position: sticky; top: 0; z-index: 60;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
   height: var(--header-h);
-  background: rgba(253, 248, 241, .92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
+  background: transparent; border-bottom: 1px solid transparent;
+  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
+.site-header.scrolled {
+  background: rgba(253, 248, 241, .93);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line);
+  box-shadow: 0 1px 12px rgba(36, 29, 23, .05);
+}
+/* Every page except the home hero starts scrolled, so the bar is never
+   invisible over ordinary content. */
+.site-header.solid { background: rgba(253,248,241,.93); border-bottom-color: var(--line); }
 .site-header .wrap { height: 100%; display: flex; align-items: center; gap: 14px; }
 
 .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: inherit; margin-right: auto; }
@@ -153,49 +163,94 @@ p  { margin: 0 0 1rem; }
 
 /* ------------------------------------------------------------------ hero */
 
+/* Cinematic full-bleed hero, light. The video plays edge to edge and a cream
+   veil sits over it so the Marathi type stays readable whatever the footage
+   is doing underneath — a dark reel and a bright one both work. */
 .hero {
-  position: relative; overflow: hidden; color: #fff;
+  position: relative; overflow: hidden; color: var(--ink);
+  min-height: min(86vh, 760px);
+  display: flex; align-items: flex-end;
+  padding: 140px 0 56px;
   background:
-    radial-gradient(1100px 520px at 78% -12%, rgba(226,115,28,.55), transparent 62%),
-    linear-gradient(160deg, var(--maroon) 0%, var(--maroon-deep) 100%);
-  padding: 74px 0 86px;
+    radial-gradient(900px 420px at 75% 0%, rgba(226,115,28,.16), transparent 60%),
+    linear-gradient(170deg, var(--cream) 0%, var(--cream-2) 55%, #efe2cf 100%);
 }
-/* faint mandala-ish rings, drawn not loaded */
-.hero::after {
-  content: ""; position: absolute; right: -130px; top: -130px;
-  width: 460px; height: 460px; border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 0 0 34px rgba(255,255,255,.05), 0 0 0 82px rgba(255,255,255,.035);
-  pointer-events: none;
+@media (max-width: 700px) {
+  .hero { min-height: min(78vh, 620px); padding: 110px 0 40px; }
 }
-/* Background video. Drop assets/video/hero.mp4 in and it appears; leave it
-   out and the gradient above stands on its own. No JS needed either way. */
+/* Background video, injected by hero-video.js. Nothing injected = the
+   gradient above stands on its own, which is a fine design in itself. */
+.hero-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; z-index: 0; opacity: .32;
-  filter: saturate(1.1) contrast(1.05);
+  object-fit: cover;
 }
+/* A YouTube iframe cannot be object-fit, so blow it up past the viewport and
+   centre it — that crops it to fill the way cover would. */
+.hero-media.is-frame .hero-frame {
+  position: absolute; top: 50%; left: 50%;
+  width: 100vw; height: 56.25vw;          /* 16:9 */
+  min-height: 100%; min-width: 177.78vh;  /* never leave a gap */
+  transform: translate(-50%, -50%);
+  border: 0; pointer-events: none;
+}
+
+/* The veil. Heavier top and bottom where the type sits, clearer through the
+   middle so the footage is genuinely visible — a dark reel and a bright one
+   both stay readable underneath it. */
 .hero-scrim {
-  position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(180deg, rgba(74,18,18,.35) 0%, rgba(74,18,18,.82) 100%);
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(253,248,241,.93) 0%,
+    rgba(253,248,241,.38) 24%,
+    rgba(253,248,241,.34) 46%,
+    rgba(253,248,241,.88) 80%,
+    rgba(253,248,241,.98) 100%);
 }
+/* No video means nothing to veil — the gradient behind stands on its own. */
+.hero:not(.has-video) .hero-scrim { display: none; }
+
 @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
 
-.hero .wrap { position: relative; z-index: 1; }
-.hero .eyebrow { color: var(--gold); }
-.hero h1 { color: #fff; max-width: 16ch; }
-.hero p { color: rgba(255,255,255,.88); max-width: 54ch; font-size: 1.06rem; margin-top: 1.1rem; }
+.hero .wrap { position: relative; z-index: 2; }
+.hero .eyebrow { color: var(--saffron); }
+.hero h1 {
+  color: var(--maroon); max-width: 18ch; font-weight: 400;
+  font-size: clamp(2.1rem, 6vw, 4rem); line-height: 1.12; letter-spacing: -.01em;
+}
+.hero p { color: var(--ink); max-width: 46ch; font-size: 1.07rem; margin-top: 1.1rem; }
+/* Only over video, where the background is unpredictable. */
+.hero.has-video h1, .hero.has-video p { text-shadow: 0 1px 16px rgba(253,248,241,.9); }
+
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
+/* Stats get their own strip rather than floating on the footage — numbers
+   over moving video are hard to read and make the hero look busy. */
 .hero-stats {
+  position: relative; z-index: 2;
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-  margin-top: 48px; background: rgba(255,255,255,.18);
-  border: 1px solid rgba(255,255,255,.18); border-radius: var(--r-md); overflow: hidden;
+  margin-top: 44px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
-.hero-stats div { background: rgba(0,0,0,.14); padding: 18px 16px; }
-.hero-stats b { display: block; font-family: var(--display); font-size: 1.55rem; }
-.hero-stats span { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.72); }
+.hero-stats div { background: rgba(255,255,255,.93); padding: 16px 18px; }
+.hero-stats b {
+  display: block; font-family: var(--display); font-size: 1.5rem;
+  color: var(--maroon); font-variant-numeric: tabular-nums;
+}
+.hero-stats span {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--ink-2); font-weight: 600;
+}
 @media (min-width: 760px) { .hero-stats { grid-template-columns: repeat(4, 1fr); } }
+
+/* Thin scroll cue, the way cinematic heroes mark "there is more below". */
+.hero-cue {
+  position: absolute; left: 50%; bottom: 12px; z-index: 2;
+  width: 1px; height: 36px; transform: translateX(-50%);
+  background: linear-gradient(var(--ink-2), transparent); opacity: .45;
+}
+@media (max-width: 700px) { .hero-cue { display: none; } }
 
 /* -------------------------------------------------------------- sections */
 
@@ -206,6 +261,8 @@ section.alt { background: var(--cream-2); }
 .grid { display: grid; gap: 20px; }
 @media (min-width: 700px) { .cols-2 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 920px) { .cols-3 { grid-template-columns: repeat(3, 1fr); } }
+/* Contact cards go two-up on a phone rather than four tall stacked boxes. */
+@media (min-width: 420px) { .cols-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 920px) { .cols-4 { grid-template-columns: repeat(4, 1fr); } }
 
 .card {
@@ -229,6 +286,39 @@ section.alt { background: var(--cream-2); }
   display: grid; place-items: center; color: var(--ink-2); text-align: center; padding: 20px;
 }
 .figure img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Holding a reel instead of a photo: Instagram's embed brings its own white
+   card and rounding, so drop ours and let it set its own height. */
+.figure.is-reel {
+  aspect-ratio: auto; background: none; border: 0; padding: 0;
+  display: block; max-width: 420px; margin-inline: auto;
+}
+.figure.is-reel .instagram-media { min-width: 0 !important; margin: 0 auto !important; }
+
+/* ------------------------------------------------- self-hosted reel player */
+
+.vid {
+  position: relative; width: 100%; aspect-ratio: 9 / 16;
+  border-radius: var(--r-md); overflow: hidden;
+  background: #000; box-shadow: var(--shadow-sm);
+}
+.vid video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.vid-sound {
+  position: absolute; right: 10px; bottom: 10px;
+  width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.45);
+  color: #fff; font-size: 1rem; line-height: 1; padding: 0;
+  display: grid; place-items: center; backdrop-filter: blur(4px);
+}
+.vid-sound:hover { background: rgba(0,0,0,.65); }
+.vid-sound:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }
+
+/* A slot holding a real video needs none of the placeholder framing. */
+.figure.is-video {
+  aspect-ratio: auto; background: none; border: 0; padding: 0;
+  display: block; max-width: 400px; margin-inline: auto;
+}
 
 /* ---------------------------------------------------------------- timeline */
 
@@ -264,6 +354,63 @@ section.alt { background: var(--cream-2); }
 .barlist .top b { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .barlist .track { height: 6px; border-radius: 99px; background: var(--cream-2); margin-top: 7px; overflow: hidden; }
 .barlist .fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--saffron), var(--gold)); }
+
+/* ---------------------------------------------------------- intro band */
+
+.intro-band { background: var(--cream-2); padding: 52px 0; }
+
+.intro-split { display: grid; gap: 30px; align-items: center; }
+@media (min-width: 880px) {
+  .intro-split { grid-template-columns: 1fr minmax(320px, 400px); gap: 52px; }
+}
+.intro-text h2 { margin-bottom: 10px; }
+.intro-text .btn { margin-top: 6px; }
+
+/* Instagram's iframe has its own white card and border radius, so this
+   wrapper only needs to centre it and cap its width. */
+.intro-reel { width: 100%; max-width: 400px; margin: 0 auto; min-height: 120px; }
+.intro-reel .instagram-media { min-width: 0 !important; }
+
+/* ------------------------------------------------- instagram reel embeds */
+
+.ig-grid { display: grid; gap: 16px; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 620px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .ig-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* Instagram injects its own iframe; keep it inside our column. */
+.ig-grid .instagram-media { min-width: 0 !important; max-width: 100% !important; }
+
+/* One cell of the grid, whether it ends up holding an mp4 or an embed. */
+.reel-slot { min-width: 0; }
+.reel-slot .vid { border-radius: var(--r-md); }
+
+.ig-empty {
+  grid-column: 1 / -1; text-align: center; padding: 36px 24px;
+  background: var(--white); border: 1px dashed var(--line);
+  border-radius: var(--r-md); color: var(--ink-2);
+}
+.ig-empty p { margin: 0 0 8px; }
+.ig-empty code {
+  background: var(--cream-2); padding: 2px 6px; border-radius: 5px;
+  font-size: .86em; word-break: break-all;
+}
+.ig-empty .btn { margin-top: 10px; }
+
+/* ---------------------------------------------------------- person cards */
+
+.card.person {
+  display: block; text-decoration: none; color: inherit; text-align: center;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.card.person:hover {
+  transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--saffron);
+}
+.card.person .ico { margin: 0 auto 12px; }
+.card.person h3 { font-size: 1.05rem; }
+.card.person .phone {
+  font-variant-numeric: tabular-nums; font-weight: 700;
+  color: var(--maroon); letter-spacing: .02em; margin: 4px 0 0;
+}
 
 /* ------------------------------------------------------------ media grid */
 
@@ -338,6 +485,37 @@ input:focus, select:focus, textarea:focus {
   outline: 2px solid var(--saffron); outline-offset: -1px; border-color: var(--saffron);
 }
 
+/* --------------------------------------------------- show / hide password */
+
+.pw-wrap { position: relative; }
+/* Room for the button so a long password never slides under it. */
+.pw-wrap input { padding-right: 46px; }
+
+.pw-toggle {
+  position: absolute; top: 50%; right: 6px; transform: translateY(-50%);
+  width: 34px; height: 34px; display: grid; place-items: center;
+  background: none; border: 0; border-radius: 8px; cursor: pointer;
+  color: var(--ink-2); padding: 0;
+}
+.pw-toggle:hover { background: var(--cream-2); color: var(--maroon); }
+.pw-toggle:focus-visible { outline: 2px solid var(--saffron); outline-offset: 1px; }
+
+/* The slash is only drawn once the password is visible. */
+.pw-toggle .eye-slash { opacity: 0; transition: opacity .12s ease; }
+.pw-toggle[aria-pressed="true"] { color: var(--maroon); }
+.pw-toggle[aria-pressed="true"] .eye-slash { opacity: 1; }
+
+/* Edge and IE put their own reveal button in password fields — two eyes
+   side by side looks broken, so hide theirs. */
+input::-ms-reveal, input::-ms-clear { display: none; }
+
+/* Fields the app fills in and nobody may change — वर्ष on the entry form. */
+input.locked {
+  background: var(--cream-2); color: var(--ink-2); font-weight: 700;
+  cursor: not-allowed; border-style: dashed;
+}
+input.locked:focus { outline: none; border-color: var(--line); }
+
 .msg { padding: 11px 14px; border-radius: var(--r-sm); font-size: .9rem; margin-top: 14px; display: none; }
 .msg.show { display: block; }
 .msg.ok  { background: #e7f3ec; color: var(--good); }
@@ -349,6 +527,25 @@ input:focus, select:focus, textarea:focus {
 }
 .app-bar .wrap { display: flex; align-items: center; gap: 14px; }
 .app-bar .who { margin-left: auto; text-align: right; font-size: .78rem; line-height: 1.35; opacity: .88; }
+
+.year-select {
+  width: auto; padding: 5px 10px; font-size: .85rem; font-weight: 700;
+  background: rgba(255,255,255,.16); color: #fff;
+  border: 1px solid rgba(255,255,255,.35); border-radius: 999px;
+}
+.year-select option { color: var(--ink); background: var(--white); }
+
+/* Visible to screen readers, not on screen. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* A year other than the one new entries go into — make that obvious. */
+.year-banner {
+  background: #fff4e0; border: 1px solid #e8c882; color: #6b4a12;
+  border-radius: var(--r-sm); padding: 10px 14px; margin-top: 14px; font-size: .9rem;
+}
 .app-bar .who b { display: block; font-size: .92rem; opacity: 1; }
 
 .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 18px 0 2px; -webkit-overflow-scrolling: touch; }

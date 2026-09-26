@@ -5,6 +5,17 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  /* --------------------------------------------------------- header state */
+
+  var header = document.querySelector('.site-header');
+
+  function onScroll() {
+    // Solid once past roughly the first screen of the hero.
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   /* ------------------------------------------------------------ mobile nav */
 
   var toggle = document.getElementById('navToggle');
@@ -54,10 +65,20 @@
   U.get('public').then(function (d) {
     if (!d || !d.ok) { offline('जमाखर्च सध्या उपलब्ध नाही.'); return; }
 
+    // "११ वे पर्व" — worked out from the founding year, so it is right
+    // every year without anyone editing the page.
+    var parva = U.parva(d.parva);
+    if (parva) {
+      document.getElementById('heroTitle').textContent = parva + ' — नवरात्रौत्सव';
+      document.getElementById('heroEyebrow').textContent =
+        U.dev(d.foundedYear || 2016) + ' पासून · दत्तनगर, कोडोली, जि. सातारा';
+    }
+
     document.getElementById('hsIncome').textContent = U.moneyShort(d.income);
     document.getElementById('hsSpent').textContent = U.moneyShort(d.spent);
-    document.getElementById('hsDonors').textContent = (d.memberCount + d.areaCount) || '—';
-    document.getElementById('hsYear').textContent = d.year || '—';
+    document.getElementById('hsDonors').textContent =
+      (d.memberCount + d.areaCount + (d.sponsorCount || 0)) || '—';
+    document.getElementById('hsYear').textContent = parva ? U.dev(d.year) : (d.year || '—');
 
     document.getElementById('psIncome').textContent = U.money(d.income);
     document.getElementById('psIncomeSub').textContent =
@@ -71,10 +92,25 @@
     document.getElementById('psBalanceSub').textContent =
       d.balance < 0 ? 'तूट' : 'शिल्लक';
 
-    bars(document.getElementById('psVargani'), [
+    var sources = [
       { label: 'सभासद वर्गणी', amount: d.memberTotal },
       { label: 'क्षेत्र वर्गणी', amount: d.areaTotal }
-    ]);
+    ];
+    if (d.sponsorTotal) sources.push({ label: 'देणगी', amount: d.sponsorTotal });
+    bars(document.getElementById('psVargani'), sources);
+
+    // वस्तू स्वरूपात देणगी never becomes cash, so it is noted apart from the
+    // totals rather than folded into them.
+    if (d.sponsorKindTotal) {
+      document.getElementById('psVargani').insertAdjacentHTML('beforeend',
+        '<p class="muted" style="margin:12px 0 0">वस्तू स्वरूपात देणगी: ' +
+        U.money(d.sponsorKindTotal) + ' (रकमेत धरलेली नाही)</p>');
+    }
+
+    if (d.byPurpose && d.byPurpose.length) {
+      var box = document.getElementById('psPurpose');
+      if (box) { bars(box, d.byPurpose); box.closest('.card').hidden = false; }
+    }
     bars(document.getElementById('psExpenses'), d.topExpenses);
 
     document.getElementById('psNote').textContent =
