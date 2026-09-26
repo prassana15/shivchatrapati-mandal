@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>नोंदवही — शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#6e1d1d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="app-body">
+
+<!-- ------------------------------------------------------------- login -->
+<div id="loginView">
+  <div class="wrap">
+    <div class="auth-card">
+      <div class="mark brand-mark" style="width:54px;height:54px;border-radius:50%;background:linear-gradient(145deg,#e2731c,#6e1d1d);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:1.5rem;font-weight:700;margin:0 auto 16px">शि</div>
+      <h2 style="text-align:center;font-size:1.3rem">कार्यकर्ता लॉगिन</h2>
+      <p class="muted" style="text-align:center">मंडळाची नोंदवही</p>
+
+      <label for="email">ईमेल</label>
+      <input id="email" type="email" autocomplete="username" placeholder="name@gmail.com">
+
+      <label for="pin">पिन</label>
+      <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="४ अंकी पिन">
+
+      <button class="btn btn-primary btn-block" id="loginBtn" style="margin-top:22px">लॉगिन करा</button>
+      <div class="msg err" id="loginMsg"></div>
+
+      <p class="muted" style="margin-top:18px;text-align:center">
+        पिन मिळाला नाही? मंडळाच्या ॲडमिनशी संपर्क करा.<br>
+        <a href="index.html">← संकेतस्थळावर परत</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------------------------- app -->
+<div id="appView" class="hide">
+  <div class="app-bar">
+    <div class="wrap">
+      <strong style="font-family:var(--display);font-size:1.05rem">नोंदवही</strong>
+      <span class="muted" id="yearChip" style="color:rgba(255,255,255,.7);font-size:.82rem"></span>
+      <span class="who"><b id="whoName"></b><span id="whoRole"></span></span>
+      <button class="btn btn-light btn-sm" id="logoutBtn">बाहेर</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="tabs" id="tabs">
+      <button data-tab="members" class="on">सभासद वर्गणी</button>
+      <button data-tab="area">क्षेत्र वर्गणी</button>
+      <button data-tab="expenses">खर्च</button>
+      <button data-tab="summary">एकूण हिशोब</button>
+    </div>
+
+    <!-- entry ------------------------------------------------------- -->
+    <div class="panel" id="formPanel">
+      <h2 id="formTitle">नवीन नोंद</h2>
+      <div class="field-grid" id="formFields"></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="saveBtn">नोंद जतन करा</button>
+        <button class="btn btn-ghost hide" id="cancelBtn">रद्द करा</button>
+      </div>
+      <div class="msg" id="formMsg"></div>
+    </div>
+
+    <!-- list -------------------------------------------------------- -->
+    <div class="panel" id="listPanel">
+      <h2 id="listTitle">नोंदी</h2>
+      <div class="filters">
+        <div><label for="q">शोधा</label><input id="q" placeholder="नाव, कारण, पावती क्रमांक…"></div>
+        <div><label for="from">पासून</label><input id="from" type="date"></div>
+        <div><label for="to">पर्यंत</label><input id="to" type="date"></div>
+        <button class="btn btn-ghost" id="clearBtn">साफ करा</button>
+      </div>
+
+      <div class="tbl-wrap"><table id="tbl"></table></div>
+
+      <div class="list-meta">
+        <span id="listCount">—</span>
+        <span>एकूण रक्कम <b id="listTotal">—</b></span>
+        <span style="margin-left:auto"><button class="btn btn-ghost btn-sm" id="csvBtn">CSV उतरवा</button></span>
+      </div>
+    </div>
+
+    <!-- summary ----------------------------------------------------- -->
+    <div class="panel hide" id="summaryPanel">
+      <h2>एकूण हिशोब</h2>
+      <div class="stat-row" id="sumStats"></div>
+
+      <div class="grid cols-2" style="margin-top:24px">
+        <div>
+          <h3 style="margin-bottom:6px">पैसे कसे आले</h3>
+          <div class="barlist" id="sumMode"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:6px">मोठे खर्च</h3>
+          <div class="barlist" id="sumExpenses"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:6px">सर्वाधिक वर्गणी</h3>
+          <div class="barlist" id="sumDonors"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:6px">मध्यस्थी कार्यकर्ता</h3>
+          <div class="barlist" id="sumKaryakarta"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="muted" style="text-align:center;padding:30px 0">
+      <a href="index.html">← संकेतस्थळावर परत</a>
+    </p>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# The records app is for committee members only - no reason for it in search.
+Disallow: /admin.html

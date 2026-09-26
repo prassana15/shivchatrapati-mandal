@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>शिवछत्रपती सांस्कृतिक क्रीडा मंडळ, दत्तनगर, कोडोली, सातारा</title>
+<meta name="description" content="शिवछत्रपती सांस्कृतिक क्रीडा मंडळ, दत्तनगर, कोडोली, सातारा — उत्सव, सामाजिक उपक्रम आणि पारदर्शक जमाखर्च.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="शिवछत्रपती सांस्कृतिक क्रीडा मंडळ, दत्तनगर, कोडोली">
+<meta property="og:description" content="उत्सव, सामाजिक उपक्रम आणि पारदर्शक जमाखर्च.">
+<meta property="og:url" content="https://www.shivchatrapati-mandal-satara.com/">
+<meta name="theme-color" content="#6e1d1d">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Search engines: tells Google this is a local organisation, not a shop -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "शिवछत्रपती सांस्कृतिक क्रीडा मंडळ",
+  "alternateName": "Shivchhatrapati Sanskrutik Krida Mandal",
+  "url": "https://www.shivchatrapati-mandal-satara.com/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "दत्तनगर, कोडोली",
+    "addressRegion": "सातारा",
+    "addressCountry": "IN"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <!-- Drop the real logo at assets/img/logo.png and it replaces the
+           lettermark automatically. If the file is missing, onerror swaps
+           back so the header never shows a broken image. -->
+      <span class="mark" id="brandMark">
+        <img src="assets/img/logo.png" alt="मंडळाचा लोगो"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%"
+             onerror="this.remove();document.getElementById('brandMark').textContent='शि';">
+      </span>
+      <span class="txt">
+        <strong>शिवछत्रपती मंडळ</strong>
+        <span>दत्तनगर, कोडोली, सातारा</span>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="मेनू">
+      <span></span>
+    </button>
+    <nav class="site-nav" id="siteNav">
+      <a href="#about">आमच्याविषयी</a>
+      <a href="#upakram">उपक्रम</a>
+      <a href="#gallery">व्हिडिओ</a>
+      <a href="#jamakharch">जमाखर्च</a>
+      <a href="#vargani">वर्गणी</a>
+      <a href="#contact">संपर्क</a>
+      <a class="btn btn-primary btn-sm" href="admin.html">कार्यकर्ता लॉगिन</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ------------------------------------------------------------- hero -->
+<div class="hero" id="top">
+  <!-- Background reel. Put a short clip at assets/video/hero.mp4 (see README
+       for how to compress one). Missing file = it simply never shows. -->
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+         poster="assets/img/hero-poster.jpg" onerror="this.remove()">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+
+  <div class="wrap">
+    <p class="eyebrow">दत्तनगर · कोडोली · जि. सातारा</p>
+    <h1>शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</h1>
+    <p>
+      गावाच्या उत्सवात परंपरा जपणारं आणि वर्षभर सामाजिक उपक्रम राबवणारं मंडळ.
+      प्रत्येक रुपयाचा हिशोब इथे उघडपणे मांडलेला आहे.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#vargani">वर्गणी द्या</a>
+      <a class="btn btn-light" href="#jamakharch">जमाखर्च पहा</a>
+    </div>
+
+    <!-- filled live from the Sheet; the markup below is the fallback -->
+    <div class="hero-stats" id="heroStats">
+      <div><b id="hsIncome">—</b><span>एकूण जमा</span></div>
+      <div><b id="hsSpent">—</b><span>एकूण खर्च</span></div>
+      <div><b id="hsDonors">—</b><span>देणगीदार</span></div>
+      <div><b id="hsYear">—</b><span>उत्सव वर्ष</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------ about -->
+<section id="about">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">आमच्याविषयी</p>
+      <h2>परंपरा, उत्साह आणि पारदर्शकता</h2>
+      <p class="lead">
+        दत्तनगर, कोडोली येथील तरुण कार्यकर्त्यांनी एकत्र येऊन हे मंडळ उभं केलं.
+        गणेशोत्सव आणि नवरात्रौत्सव हे आमच्या वर्षाचे केंद्रबिंदू, पण मंडळाचं काम
+        उत्सवापुरतं मर्यादित नाही — आरोग्य शिबिर, क्रीडा स्पर्धा आणि गावातील
+        मदतकार्य वर्षभर सुरू असतं.
+      </p>
+      <p>
+        <!-- TODO: स्थापना वर्ष आणि मंडळाचा थोडक्यात इतिहास इथे लिहा -->
+        मंडळाची स्थापना <strong>[वर्ष]</strong> साली झाली. तेव्हापासून दरवर्षी
+        गावकऱ्यांच्या वर्गणीतून उत्सव साजरा केला जातो आणि त्याचा संपूर्ण हिशोब
+        उत्सवानंतर जाहीर केला जातो.
+      </p>
+      <a class="btn btn-ghost" href="#contact">मंडळात सहभागी व्हा</a>
+    </div>
+    <div class="figure">
+      <!-- TODO: मंडळाचा फोटो ठेवा: assets/img/mandal.jpg -->
+      <p class="muted">मंडळाचा फोटो<br><small>assets/img/mandal.jpg</small></p>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------- upakram -->
+<section class="alt" id="upakram">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">उपक्रम</p>
+      <h2>मंडळाचे वर्षभराचे काम</h2>
+      <p class="lead">उत्सव हा आनंदाचा भाग, पण मंडळाची खरी ओळख या उपक्रमांतून.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="ico">🪔</div>
+        <h3>गणेशोत्सव व नवरात्रौत्सव</h3>
+        <p>मंडप, सजावट, आरती, ढोल पथक आणि महाप्रसाद — संपूर्ण गाव एकत्र येणारे दहा दिवस.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🩺</div>
+        <h3>आरोग्य शिबिर</h3>
+        <p>गावकऱ्यांसाठी मोफत तपासणी शिबिर, रक्तदान आणि जनजागृती कार्यक्रम.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🏆</div>
+        <h3>क्रीडा स्पर्धा</h3>
+        <p>तरुणांसाठी क्रीडा स्पर्धा आणि विजेत्यांना बक्षीस वितरण.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎭</div>
+        <h3>सांस्कृतिक कार्यक्रम</h3>
+        <p>कीर्तन, गोंधळ आणि स्थानिक कलाकारांना व्यासपीठ.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🤝</div>
+        <h3>सामाजिक मदत</h3>
+        <p>गरजू कुटुंबांना मदत आणि गावातील सार्वजनिक कामांत सहभाग.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📊</div>
+        <h3>पारदर्शक हिशोब</h3>
+        <p>जमा झालेली वर्गणी आणि केलेला खर्च — दोन्ही याच संकेतस्थळावर उघड.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------ utsav -->
+<section id="utsav">
+  <div class="wrap split">
+    <div class="figure">
+      <!-- TODO: उत्सवाचा फोटो: assets/img/utsav.jpg -->
+      <p class="muted">उत्सवाचा फोटो<br><small>assets/img/utsav.jpg</small></p>
+    </div>
+    <div>
+      <p class="eyebrow">उत्सव</p>
+      <h2>यावर्षीचा कार्यक्रम</h2>
+      <!-- TODO: या वर्षीच्या तारखा आणि कार्यक्रम भरा -->
+      <ul class="timeline">
+        <li>
+          <span class="when">दिवस १</span>
+          <h3>आगमन व प्राणप्रतिष्ठा</h3>
+          <p>ढोल पथकासह मिरवणूक, पूजा आणि आरती.</p>
+        </li>
+        <li>
+          <span class="when">दिवस ३</span>
+          <h3>सांस्कृतिक कार्यक्रम</h3>
+          <p>स्थानिक कलाकारांचे सादरीकरण आणि स्पर्धा.</p>
+        </li>
+        <li>
+          <span class="when">दिवस ५</span>
+          <h3>महाप्रसाद</h3>
+          <p>संपूर्ण गावासाठी महाप्रसादाचे आयोजन.</p>
+        </li>
+        <li>
+          <span class="when">शेवटचा दिवस</span>
+          <h3>विसर्जन मिरवणूक</h3>
+          <p>ढोल-ताशा, डीजे आणि पारंपरिक मिरवणूक.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------- gallery -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">क्षणचित्रे</p>
+      <h2>उत्सवाचे व्हिडिओ</h2>
+      <p class="lead">मिरवणूक, सजावट आणि मंडळाच्या उपक्रमांची झलक.</p>
+    </div>
+
+    <!-- Put four vertical clips (9:16, same shape as Instagram reels) at
+         assets/video/reel-1.mp4 … reel-4.mp4 with matching .jpg posters.
+         Any file that is missing falls back to the placeholder tile. -->
+    <div class="media-grid" id="mediaGrid">
+      <a class="media-item" href="assets/video/reel-1.mp4" target="_blank" rel="noopener">
+        <video src="assets/video/reel-1.mp4" poster="assets/img/reel-1.jpg"
+               muted loop playsinline preload="metadata"
+               onmouseover="this.play()" onmouseout="this.pause()"
+               onerror="this.closest('.media-item').outerHTML='&lt;div class=&quot;media-item placeholder&quot;&gt;reel-1.mp4&lt;/div&gt;'"></video>
+        <span class="play">▶</span>
+        <span class="cap">आगमन मिरवणूक</span>
+      </a>
+      <a class="media-item" href="assets/video/reel-2.mp4" target="_blank" rel="noopener">
+        <video src="assets/video/reel-2.mp4" poster="assets/img/reel-2.jpg"
+               muted loop playsinline preload="metadata"
+               onmouseover="this.play()" onmouseout="this.pause()"
+               onerror="this.closest('.media-item').outerHTML='&lt;div class=&quot;media-item placeholder&quot;&gt;reel-2.mp4&lt;/div&gt;'"></video>
+        <span class="play">▶</span>
+        <span class="cap">सजावट</span>
+      </a>
+      <a class="media-item" href="assets/video/reel-3.mp4" target="_blank" rel="noopener">
+        <video src="assets/video/reel-3.mp4" poster="assets/img/reel-3.jpg"
+               muted loop playsinline preload="metadata"
+               onmouseover="this.play()" onmouseout="this.pause()"
+               onerror="this.closest('.media-item').outerHTML='&lt;div class=&quot;media-item placeholder&quot;&gt;reel-3.mp4&lt;/div&gt;'"></video>
+        <span class="play">▶</span>
+        <span class="cap">ढोल पथक</span>
+      </a>
+      <a class="media-item" href="assets/video/reel-4.mp4" target="_blank" rel="noopener">
+        <video src="assets/video/reel-4.mp4" poster="assets/img/reel-4.jpg"
+               muted loop playsinline preload="metadata"
+               onmouseover="this.play()" onmouseout="this.pause()"
+               onerror="this.closest('.media-item').outerHTML='&lt;div class=&quot;media-item placeholder&quot;&gt;reel-4.mp4&lt;/div&gt;'"></video>
+        <span class="play">▶</span>
+        <span class="cap">विसर्जन मिरवणूक</span>
+      </a>
+    </div>
+
+    <div class="ig-strip">
+      <span class="ig-mark">📷</span>
+      <div>
+        <strong>@shivchatrapati_mandal_</strong>
+        <span class="muted">सर्व रील्स आणि फोटो इन्स्टाग्रामवर</span>
+      </div>
+      <a class="btn btn-primary btn-sm" href="https://www.instagram.com/shivchatrapati_mandal_/"
+         target="_blank" rel="noopener">इन्स्टाग्रामवर पहा</a>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------- jamakharch -->
+<section class="alt" id="jamakharch">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">पारदर्शकता</p>
+      <h2>जमाखर्च</h2>
+      <p class="lead">
+        खालील आकडे मंडळाच्या नोंदवहीतून थेट येतात. कार्यकर्ता नोंद करताच
+        ते इथे आपोआप बदलतात — वर्षअखेरीस नव्हे, त्याच क्षणी.
+      </p>
+    </div>
+
+    <div class="stat-row" id="publicStats">
+      <div class="stat"><div class="k">एकूण जमा</div><div class="v" id="psIncome">—</div><div class="s" id="psIncomeSub">&nbsp;</div></div>
+      <div class="stat"><div class="k">एकूण खर्च</div><div class="v" id="psSpent">—</div><div class="s" id="psSpentSub">&nbsp;</div></div>
+      <div class="stat" id="psBalanceCard"><div class="k">शिल्लक</div><div class="v" id="psBalance">—</div><div class="s" id="psBalanceSub">&nbsp;</div></div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top:22px">
+      <div class="card">
+        <h3>वर्गणी</h3>
+        <div class="barlist" id="psVargani"><p class="muted">लोड होत आहे…</p></div>
+      </div>
+      <div class="card">
+        <h3>मोठे खर्च</h3>
+        <div class="barlist" id="psExpenses"><p class="muted">लोड होत आहे…</p></div>
+      </div>
+    </div>
+
+    <p class="center" style="margin-top:26px">
+      <a class="btn btn-ghost" href="jamakharch-2025.html">२०२५ चा संपूर्ण हिशोब पहा</a>
+    </p>
+    <p class="muted center" id="psNote" style="margin-top:16px"></p>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------- vargani -->
+<section id="vargani">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">वर्गणी</p>
+      <h2>मंडळाला मदत करा</h2>
+      <p class="lead">
+        मंडळाचा संपूर्ण खर्च गावकऱ्यांच्या वर्गणीतून भागतो. तुमची मदत
+        कितीही असो — तिची नोंद होते आणि हिशोब जाहीर होतो.
+      </p>
+      <p>
+        <strong>सभासद वर्गणी</strong> — मंडळाच्या सभासदांकडून वार्षिक वर्गणी.<br>
+        <strong>क्षेत्र वर्गणी</strong> — गावातील नागरिक व दुकानदारांकडून.
+      </p>
+      <p class="muted">
+        <!-- TODO: UPI आयडी आणि बँक तपशील भरा -->
+        UPI: <strong>[तुमचा UPI आयडी]</strong> · संपर्क: <strong>[मोबाईल क्रमांक]</strong>
+      </p>
+      <a class="btn btn-primary" href="#contact">संपर्क करा</a>
+    </div>
+    <div class="figure">
+      <!-- TODO: UPI QR चा फोटो: assets/img/upi-qr.png -->
+      <p class="muted">UPI QR कोड<br><small>assets/img/upi-qr.png</small></p>
+    </div>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------- contact -->
+<section class="alt" id="contact">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow">संपर्क</p>
+      <h2>आमच्याशी बोला</h2>
+    </div>
+    <div class="grid cols-3">
+      <!-- TODO: खरी नावे आणि क्रमांक भरा -->
+      <div class="card">
+        <div class="ico">📍</div>
+        <h3>पत्ता</h3>
+        <p>शिवछत्रपती सांस्कृतिक क्रीडा मंडळ,<br>दत्तनगर, कोडोली,<br>ता. [तालुका], जि. सातारा</p>
+      </div>
+      <div class="card">
+        <div class="ico">📞</div>
+        <h3>अध्यक्ष / सचिव</h3>
+        <p>[नाव] — [मोबाईल]<br>[नाव] — [मोबाईल]</p>
+      </div>
+      <div class="card">
+        <div class="ico">📱</div>
+        <h3>सोशल मीडिया</h3>
+        <p>
+          <a href="https://www.instagram.com/shivchatrapati_mandal_/" target="_blank" rel="noopener">@shivchatrapati_mandal_</a>
+          <!-- TODO: Facebook आणि WhatsApp गटाचे दुवे भरा -->
+          <a href="#">Facebook</a>
+          <a href="#">WhatsApp गट</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</h3>
+        <p>दत्तनगर, कोडोली, जि. सातारा, महाराष्ट्र</p>
+        <p class="muted" style="color:rgba(255,255,255,.55)">
+          मंडळाचा संपूर्ण जमाखर्च या संकेतस्थळावर उघडपणे उपलब्ध आहे.
+        </p>
+      </div>
+      <div>
+        <h3>दुवे</h3>
+        <a href="#about">आमच्याविषयी</a>
+        <a href="#upakram">उपक्रम</a>
+        <a href="#jamakharch">जमाखर्च</a>
+        <a href="jamakharch-2025.html">जमाखर्च २०२५</a>
+        <a href="#vargani">वर्गणी</a>
+      </div>
+      <div>
+        <h3>कार्यकर्त्यांसाठी</h3>
+        <a href="admin.html">नोंद लॉगिन</a>
+        <a href="#contact">संपर्क</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</span>
+      <span>दत्तनगर, कोडोली, सातारा</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

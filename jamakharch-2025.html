@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>जमाखर्च २०२५ — शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</title>
+<meta name="description" content="शिवछत्रपती सांस्कृतिक क्रीडा मंडळ, दत्तनगर, कोडोली — २०२५ चा संपूर्ण जमाखर्च.">
+<meta name="theme-color" content="#6e1d1d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron:#d96a17; --maroon:#6e1d1d; --maroon-deep:#4a1212; --gold:#b8931f;
+  --bg:#fdf8f1; --surface:#ffffff; --surface-2:#f6ede0;
+  --ink:#241d17; --ink-2:#5f544a; --line:#e6dacb;
+  --good:#1a6b41; --bad:#b3261e;
+  --sans:"Mukta","Noto Sans Devanagari","Segoe UI",system-ui,sans-serif;
+  --display:"Tiro Devanagari Marathi","Noto Serif Devanagari",Georgia,serif;
+  --shadow:0 1px 2px rgba(36,29,23,.06),0 4px 16px rgba(36,29,23,.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --saffron:#f08a3c; --maroon:#8e3030; --maroon-deep:#2a0e0e; --gold:#d9b445;
+    --bg:#191411; --surface:#221b17; --surface-2:#2c231d;
+    --ink:#f2e9df; --ink-2:#b3a597; --line:#3a2f27;
+    --good:#4fc98a; --bad:#ff8a7d;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --saffron:#f08a3c; --maroon:#8e3030; --maroon-deep:#2a0e0e; --gold:#d9b445;
+  --bg:#191411; --surface:#221b17; --surface-2:#2c231d;
+  --ink:#f2e9df; --ink-2:#b3a597; --line:#3a2f27;
+  --good:#4fc98a; --bad:#ff8a7d;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 16px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{width:100%;max-width:1060px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.25}
+.mono{font-variant-numeric:tabular-nums}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:11px;height:62px}
+.mark{width:38px;height:38px;flex:none;border-radius:50%;background:linear-gradient(145deg,var(--saffron),var(--maroon));color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:1.1rem;font-weight:700}
+.bname{font-family:var(--display);font-size:1rem;line-height:1.2;display:block}
+.bsub{font-size:.72rem;color:var(--ink-2)}
+.yr{margin-left:auto;font-size:.75rem;font-weight:700;letter-spacing:.1em;padding:5px 11px;border-radius:999px;background:var(--surface-2);color:var(--ink-2)}
+
+/* hero */
+.hero{background:radial-gradient(900px 420px at 80% -20%,rgba(217,106,23,.5),transparent 60%),linear-gradient(160deg,var(--maroon),var(--maroon-deep));color:#fff;padding:46px 0 40px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-110px;top:-110px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 30px rgba(255,255,255,.05),0 0 0 72px rgba(255,255,255,.03)}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.hero h1{font-size:clamp(1.6rem,4.6vw,2.6rem);max-width:18ch}
+.hero p{color:rgba(255,255,255,.85);max-width:56ch;margin:.7rem 0 0}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:28px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16);border-radius:14px;overflow:hidden}
+.tiles div{background:rgba(0,0,0,.18);padding:15px 14px}
+.tiles b{display:block;font-family:var(--display);font-size:1.4rem}
+.tiles span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.7)}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,1fr)}}
+
+/* notice */
+.notice{background:var(--surface-2);border-bottom:1px solid var(--line);padding:13px 0;font-size:.88rem;color:var(--ink-2)}
+.notice b{color:var(--ink)}
+
+/* tabs */
+.tabs{display:flex;gap:7px;overflow-x:auto;padding:20px 0 4px;-webkit-overflow-scrolling:touch}
+.tabs button{flex:0 0 auto;padding:9px 17px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2);font:inherit;font-weight:600;font-size:.9rem;cursor:pointer;white-space:nowrap}
+.tabs button.on{background:var(--maroon);border-color:var(--maroon);color:#fff}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;margin:14px 0 30px;box-shadow:var(--shadow)}
+.panel h2{font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+input[type=search]{flex:1;min-width:190px;padding:11px 13px;font:inherit;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink)}
+input[type=search]:focus{outline:2px solid var(--saffron);outline-offset:-1px}
+.count{font-size:.87rem;color:var(--ink-2)}
+.count b{color:var(--ink);font-size:1.05rem}
+
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+thead th{position:sticky;top:0;background:var(--surface-2);text-align:left;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);padding:10px;white-space:nowrap;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface-2) 45%,transparent)}
+.amt{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+.dim{color:var(--ink-2)}
+.n{color:var(--ink-2);font-size:.8rem;white-space:nowrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.note{font-size:.8rem;color:var(--ink-2);display:block;margin-top:3px}
+
+/* stats */
+.stat-row{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.stat-row{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:18px;box-shadow:var(--shadow)}
+.stat .k{font-size:.72rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2)}
+.stat .v{font-family:var(--display);font-size:1.7rem;margin-top:3px;font-variant-numeric:tabular-nums}
+.stat .s{font-size:.82rem;color:var(--ink-2)}
+.stat.good .v{color:var(--good)}
+.stat.bad .v{color:var(--bad)}
+
+.bars{margin-top:6px}
+.bars .r{padding:10px 0;border-bottom:1px solid var(--line)}
+.bars .r:last-child{border-bottom:0}
+.bars .t{display:flex;justify-content:space-between;gap:14px;font-size:.92rem}
+.bars .t b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bars .track{height:6px;border-radius:99px;background:var(--surface-2);margin-top:6px;overflow:hidden}
+.bars .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--saffron),var(--gold))}
+
+.callout{border-left:3px solid var(--bad);background:color-mix(in srgb,var(--bad) 9%,transparent);padding:14px 16px;border-radius:0 10px 10px 0;margin-top:18px;font-size:.92rem}
+.callout b{color:var(--bad)}
+
+footer{background:var(--maroon-deep);color:rgba(255,255,255,.72);padding:34px 0;margin-top:40px;font-size:.88rem}
+footer b{color:#fff;font-family:var(--display);font-size:1rem;display:block;margin-bottom:4px}
+footer a{color:rgba(255,255,255,.8)}
+.back{margin-left:auto;font-size:.82rem;color:var(--ink-2);text-decoration:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;white-space:nowrap}
+.back:hover{background:var(--surface-2)}
+@media(max-width:560px){.yr{display:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:11px">
+    <span class="mark">शि</span>
+    <span>
+      <span class="bname">शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</span>
+      <span class="bsub">दत्तनगर, कोडोली, जि. सातारा</span>
+    </span>
+    </a>
+    <span class="yr">२०२५</span>
+    <a class="back" href="index.html">← मुख्य पान</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">पारदर्शक जमाखर्च</p>
+    <h1>मंडळाचा संपूर्ण हिशोब</h1>
+    <p>वर्गणी किती जमली आणि प्रत्येक रुपया कुठे खर्च झाला — सगळं इथे उघडपणे.</p>
+    <div class="tiles">
+      <div><b id="tIncome">—</b><span>एकूण जमा</span></div>
+      <div><b id="tSpent">—</b><span>एकूण खर्च</span></div>
+      <div><b id="tBal">—</b><span id="tBalLbl">शिल्लक</span></div>
+      <div><b id="tCount">—</b><span>एकूण नोंदी</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="notice">
+  <div class="wrap">
+    हे <b>२०२५</b> च्या वहीतील प्रत्यक्ष आकडे आहेत — जसेच्या तसे.
+    नवीन प्रणालीत कार्यकर्ता नोंद करताच हे आकडे आपोआप बदलतील.
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs">
+    <button data-t="expenses" class="on">खर्च</button>
+    <button data-t="members">सभासद वर्गणी</button>
+    <button data-t="area">क्षेत्र वर्गणी</button>
+    <button data-t="summary">सारांश</button>
+  </div>
+
+  <div class="panel" id="listPanel">
+    <h2 id="pTitle">खर्च</h2>
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="शोधा — नाव, कारण, कार्यकर्ता…">
+      <span class="count"><span id="cRows">—</span> · एकूण <b id="cTotal">—</b></span>
+    </div>
+    <div class="tblwrap"><table id="tbl"></table></div>
+  </div>
+
+  <div class="panel" id="sumPanel" hidden>
+    <h2>सारांश</h2>
+    <div class="stat-row" id="sumStats"></div>
+    <div class="callout" id="sumCallout"></div>
+    <h3 style="margin-top:26px;font-size:1.05rem">सर्वात मोठे खर्च</h3>
+    <div class="bars" id="sumBig"></div>
+    <h3 style="margin-top:26px;font-size:1.05rem">पैसे कसे आले</h3>
+    <div class="bars" id="sumMode"></div>
+    <h3 style="margin-top:26px;font-size:1.05rem">मध्यस्थी कार्यकर्ता</h3>
+    <div class="bars" id="sumBy"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <b>शिवछत्रपती सांस्कृतिक क्रीडा मंडळ</b>
+    दत्तनगर, कोडोली, जि. सातारा ·
+    <a href="https://www.instagram.com/shivchatrapati_mandal_/" target="_blank" rel="noopener">@shivchatrapati_mandal_</a>
+    <div style="margin-top:10px"><a href="index.html">मुख्य पान</a></div>
+  </div>
+</footer>
+
+<script>
+var D = {"expenses":[{"amount":3500,"date":"27-08-2025","reason":"मंडळाचा डांबावरचा लोगो","by":"Akash Mane","mode":"ONLINE","note":""},{"amount":5000,"date":"15/09/2025","reason":"ढोलचा ऍडव्हान्स","by":"साहिल तरडे","mode":"ONLINE","note":""},{"amount":5000,"date":"15/09/2025","reason":"मंडपाचा ॲडव्हान्स","by":"आकाश माने","mode":"ONLINE","note":""},{"amount":700,"date":"16/09/2025","reason":"मंडळाचा परवाना","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":1180,"date":"18/09/2025","reason":"मंडपाचा बॅनर","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":150,"date":"20/09/2025","reason":"फ्रेम बोल्ट कागदपत्रे झेरॉक्स (पवार एमआयडीसी )","by":"किरण कापले","mode":"CASH","note":""},{"amount":15000,"date":"","reason":"मंडपाचा ॲडव्हान्स","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":600,"date":"21/09/2025","reason":"लाईट मटेरियल ट्रान्सपोर्ट","by":"किरण कापले","mode":"CASH","note":"सकाळी पाचशे दिले होते पुण्याला जाण्यापूर्वी"},{"amount":800,"date":"","reason":"मंडळाचा बोर्ड","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":220,"date":"","reason":"आगमनाचे पूजेचे  साहित्य","by":"साई शिंदे साहिल तरडे","mode":"CASH","note":""},{"amount":775,"date":"","reason":"देवीच्या मुकुटाचे डेकोरेशन साहित्य","by":"प्रसन्न यादव","mode":"ONLINE","note":""},{"amount":500,"date":"","reason":"लाईटचा लाकडी बोर्ड cash","by":"आकाश माने","mode":"CASH","note":"दुपारी खड्डे खांदताना  कॅश दिली होती पाचशे"},{"amount":2750,"date":"","reason":"रोडवरील लाइटिंग @पुणे","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":1800,"date":"","reason":"दोन हॅलोजन 100 watt","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":400,"date":"","reason":"रस्त्यावरील light pole टेम्पो भाडे","by":"प्रसन्न यादव","mode":"CASH","note":""},{"amount":5050,"date":"","reason":"25 मीटर एलईडी ट्रिप 7 बॉक्स + 50 मीटर वायर दोन सेट","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":1000,"date":"","reason":"रोडवरील पोल खड्डडे कामगार","by":"भैय्या कोळी","mode":"CASH","note":""},{"amount":500,"date":"","reason":"इलेक्ट्रिक बोर्ड online","by":"आकाश माने","mode":"ONLINE","note":""},{"amount":580,"date":"","reason":"स्विच सॉकेट लाईट बोर्ड","by":"आकाश माने","mode":"ONLINE","note":""},{"amount":1000,"date":"22/09/2025","reason":"इलेक्ट्रिक वायर","by":"साई शिंदे साहिल तरडे आदित्य कापले","mode":"ONLINE","note":""},{"amount":175,"date":"","reason":"5 नारळ","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":300,"date":"","reason":"पांढरी रांगोळी","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":30,"date":"","reason":"10 लिंबू","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":495,"date":"","reason":"किरकोळ खर्च","by":"साई शिंदे आदित्य कापले आकाश माने","mode":"ONLINE","note":""},{"amount":24000,"date":"","reason":"ढोल पूर्ण खर्च","by":"साहिल तरडे","mode":"CASH","note":""},{"amount":2500,"date":"","reason":"आगमनाचे ट्रॅक्टर भाडे","by":"आदित्य कापले","mode":"ONLINE","note":""},{"amount":500,"date":"","reason":"disel generator","by":"","mode":"ONLINE","note":""},{"amount":1050,"date":"","reason":"ढोलपथक नाश्ता पाणी","by":"आकाश माने साहिल तरडे","mode":"ONLINE","note":""},{"amount":1800,"date":"","reason":"generator भाडे","by":"","mode":"ONLINE","note":""},{"amount":230,"date":"","reason":"ढोलपथक पानी","by":"साहिल तरडे","mode":"ONLINE","note":""},{"amount":340,"date":"","reason":"लाल आणि काळा हिट","by":"साहिल तरडे","mode":"ONLINE","note":""},{"amount":2200,"date":"","reason":"फटाके आगमनाची","by":"ललित शिंद","mode":"CASH","note":""},{"amount":500,"date":"","reason":"ब्राह्मण काका पाचशे रुपये ॲडव्हान्स","by":"आदित्य कापले आकाश माने","mode":"CASH","note":""},{"amount":275,"date":"","reason":"देवीला  प्लास्टिक कागद झाकण्यासाठी","by":"आदित्य कापले आकाश माने","mode":"ONLINE","note":""},{"amount":215,"date":"","reason":"पाच कलरची रांगोळी","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":590,"date":"23/09/2035","reason":"गुलाल हळद-कुंकू कापूर अगरबत्ती","by":"आकाश माने","mode":"ONLINE","note":""},{"amount":100,"date":"","reason":"प्रसादाची केळी दोन डझन","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":40,"date":"","reason":"इलेक्ट्रिक वायर साठी  सेलोटेप","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":200,"date":"","reason":"देवीसाठी हार ॲडव्हान्स","by":"आदित्य कापले किरण कापले कापले","mode":"CASH","note":""},{"amount":150,"date":"","reason":"टेम्पो भाडे जनरेटर पोहोचवण्यासाठी","by":"आदित्य कापले किरण कापले","mode":"CASH","note":"साई शिंदे"},{"amount":120,"date":"24/09/2035","reason":"आरती धरायचे ताट","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":240,"date":"","reason":"पूजेचे ताट","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":360,"date":"","reason":"दोन प्लास्टिकची घमेले","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":150,"date":"","reason":"तीन धूप वाटी पाकीट","by":"किरण कापले","mode":"ONLINE","note":""},{"amount":350,"date":"","reason":"वायर बंडल","by":"आकाश माने","mode":"ONLINE","note":""},{"amount":800,"date":"","reason":"मंडळाचा बॅनर","by":"साई शिंदे प्रकाश जाधव","mode":"","note":""},{"amount":400,"date":"","reason":"देवीची शस्त्रे","by":"साई शिंदे प्रकाश जाधव","mode":"","note":""},{"amount":150,"date":"","reason":"आरोग्य शिबिर फ्लेक्स डिझाईन","by":"प्रसन्न यादव","mode":"ONLINE","note":""},{"amount":40,"date":"25/09/2035","reason":"एक पाण्याचा जार","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":20,"date":"","reason":"लिंबू","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":100,"date":"","reason":"क्षीरसागर हार","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":300,"date":"","reason":"आमंत्रण पत्रिका प्रिंटिंग","by":"प्रसन्न यादव","mode":"ONLINE","note":""},{"amount":15000,"date":"27/09/2025","reason":"मंडप ऍडव्हान्स","by":"आदित्य कापले","mode":"ONLINE","note":""},{"amount":100,"date":"28/09/2025","reason":"cellotape","by":"दिनेश चव्हाण","mode":"CASH","note":""},{"amount":501,"date":"","reason":"कीर्तन देणगी","by":"आदित्य कापले आकाश माने","mode":"CASH","note":""},{"amount":3000,"date":"29/09/2025","reason":"पूजेचे साहित्य","by":"आदेश जाधव","mode":"ONLINE","note":""},{"amount":360,"date":"","reason":"पूजेसाठी फळे","by":"आदित्य कापले","mode":"CASH","note":""},{"amount":4000,"date":"","reason":"स्पर्धेसाठी बक्षीस","by":"ललित शिंदे प्रकाश जाधव साई शिंदे","mode":"CASH","note":""},{"amount":15000,"date":"30/09/2025","reason":"मंडपाचा ॲडव्हान्स","by":"आदित्य कापले आकाश माने","mode":"ONLINE","note":""},{"amount":825,"date":"","reason":"सुतळी","by":"प्रसन्न यादव","mode":"ONLINE","note":""},{"amount":3501,"date":"","reason":"ब्राह्मण काका पूजेचे पैसे","by":"आदित्य कापले आकाश माने","mode":"CASH","note":""},{"amount":100,"date":"","reason":"पूजेचे साहित्य","by":"आदेश जाधव","mode":"ONLINE","note":""},{"amount":110,"date":"","reason":"कात्या सुतळी आणि एक टॉवेल","by":"किरण कापले","mode":"CASH","note":""},{"amount":1330,"date":"","reason":"मटार 400 कोथिंबीर 40 आलं 80 डाळ 360","by":"सागर चव्हाण","mode":"CASH","note":""},{"amount":560,"date":"","reason":"नारळ कापूर गुलाल हळद खोबऱ्याचा खिस","by":"साई शिंदे आदेश जाधव","mode":"CASH","note":""},{"amount":1100,"date":"","reason":"शाल आणि श्रीफळ","by":"किरण कापले","mode":"CASH","note":""},{"amount":1670,"date":"","reason":"पत्रावळी द्रोण","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":2000,"date":"","reason":"गोंधळ चे पैसे","by":"आदित्य कापले आकाश माने","mode":"CASH","note":""},{"amount":380,"date":"","reason":"फटाके","by":"ललित शिंदे","mode":"ONLINE","note":""},{"amount":472,"date":"","reason":"रवा साखर वेलची काजू बदाम","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":50,"date":"","reason":"गोंधळाचे वस्त्र","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":50,"date":"","reason":"साऊंड ची वायर","by":"आकाश माने","mode":"CASH","note":""},{"amount":24,"date":"","reason":"मधाची बाटली","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":155,"date":"","reason":"दूध दही","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":100,"date":"","reason":"सातफळे","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":230,"date":"","reason":"चार नारळ दोन किलो तांदूळ","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":5000,"date":"01/10/2025","reason":"डीजे चा ऍडव्हान्स","by":"ललित शिंदे","mode":"ONLINE","note":""},{"amount":500,"date":"","reason":"इव्हेंट ऍडव्हान्स","by":"आदेश जाधव प्रसन्न यादव","mode":"ONLINE","note":""},{"amount":9000,"date":"","reason":"आचारिचे पैसे","by":"आदित्य कापले प्रसन्न यादव","mode":"CASH","note":""},{"amount":14000,"date":"","reason":"मंडपाचा ॲडव्हान्स","by":"आदित्य कापले ललित शिंदे साई शिंदे","mode":"CASH","note":""},{"amount":4000,"date":"","reason":"फटाके","by":"आदित्य कापले ललित शिंदे साई शिंदे","mode":"CASH","note":""},{"amount":101,"date":"","reason":"गुरुजींना पूजेसाठी चिल्लर पैसे","by":"आदित्य कापले आकाश माने","mode":"CASH","note":""},{"amount":101,"date":"","reason":"कन्या पूजन दक्षिणा","by":"आदित्य कापले आकाश माने","mode":"CASH","note":""},{"amount":383,"date":"","reason":"आचारी मसाला आणि मिरची","by":"साई शिंदे","mode":"ONLINE","note":""},{"amount":1000,"date":"","reason":"ट्रॅक्टर चा ऍडव्हान्स","by":"कापलेआदित्य कापले किरण कापले","mode":"CASH","note":""},{"amount":1500,"date":"02/10/2025","reason":"ट्रॅक्टर डेकोरेशन","by":"आदित्य कापले साई शिंदे आकाश माने","mode":"CASH","note":""},{"amount":16000,"date":"","reason":"मंडपाचा फायनल पेमेंट","by":"आदित्य कापले साई शिंदे आकाश माने","mode":"ONLINE","note":""},{"amount":1000,"date":"","reason":"बबल","by":"आदेश जाधव","mode":"ONLINE","note":""},{"amount":1500,"date":"","reason":"गेनेरेटर","by":"आकाश पवार","mode":"CASH","note":""},{"amount":5000,"date":"","reason":"dj ऍडव्हान्स","by":"आदित्य कापले आकाश माने","mode":"ONLINE","note":""},{"amount":500,"date":"","reason":"प्रसाद","by":"ललित शिंदे","mode":"CASH","note":""},{"amount":1350,"date":"","reason":"स्पायरो","by":"आदेश जाधव","mode":"CASH","note":""},{"amount":500,"date":"","reason":"ट्रॅक्टर ॲडव्हान्स","by":"आदित्य कापले किरण कापले","mode":"","note":""},{"amount":8500,"date":"","reason":"डीजे ॲडव्हान्स","by":"आदित्य कापले आकाश माने","mode":"","note":""},{"amount":100,"date":"","reason":"कापूर","by":"प्रकाश जाधव","mode":"","note":""},{"amount":2500,"date":"03/10/2025","reason":"स्पायरो आणि बबल","by":"आदेश जाधव","mode":"","note":""},{"amount":2000,"date":"","reason":"ट्रॅक्टर फायनल पेमेंट","by":"आदित्य कापले ऋतिक जाधव","mode":"","note":""},{"amount":1500,"date":"","reason":"डीजे फायनल पेमेंट","by":"आदित्य कापले","mode":"","note":""},{"amount":1000,"date":"","reason":"शाल","by":"आकाश तेवर","mode":"","note":""},{"amount":200,"date":"","reason":"कापूर आणि केबल टाई","by":"साई शिंदे","mode":"","note":""},{"amount":3000,"date":"","reason":"पोलीस दंड","by":"आकाश माने साई शिंदे","mode":"","note":""},{"amount":160,"date":"06/10/2025","reason":"सोशल मीडिया फॉलोवर बूस्टर","by":"आदेश जाधव","mode":"","note":""},{"amount":7000,"date":"","reason":"लाईट आणि स्क्रीन","by":"दिनेश चव्हाण आदित्य कापले","mode":"","note":""},{"amount":1500,"date":"","reason":"देवीचे हार","by":"प्रकाश जाधव","mode":"","note":""},{"amount":5000,"date":"","reason":"light","by":"निशांत आकाश माने ललित शिंदे","mode":"","note":""},{"amount":470,"date":"","reason":"कोजागिरी पोर्णिमा","by":"आदित्य कापले किरण कापले","mode":"","note":""},{"amount":870,"date":"","reason":"गॅस","by":"आदित्य कापले आकाश माने","mode":"","note":""},{"amount":3000,"date":"","reason":"लाईटचा फायनल पेमेंट","by":"आदित्य कापले निशांत","mode":"","note":""},{"amount":1000,"date":"24/01/2026","reason":"शाल आणि श्रीफळ बुके","by":"आकाश तेवर आदित्य कापले","mode":"","note":""},{"amount":600,"date":"10/04/2026","reason":"बलिदान मास हार","by":"आदित्य कापले साई शिंदे","mode":"","note":""}],"members":[{"name":"प्रकाश जाधव","amount":5000,"date":"03/09/2025","mode":"ONLINE"},{"name":"ओमकार कापले","amount":5001,"date":"02/09/2025","mode":"ONLINE"},{"name":"सचिन जाधव","amount":5001,"date":"02/09/2025","mode":"ONLINE"},{"name":"मागील शिल्लक (cash)","amount":13500,"date":"08/09/2025","mode":"CASH"},{"name":"मागील शिल्लक (FD-शुभम यादव )","amount":15834,"date":"03/10/2025","mode":"ONLINE"},{"name":"साहिल तरडे","amount":11111,"date":"08/09/2025","mode":"ONLINE"},{"name":"साऊंड भाडे आलेले","amount":1000,"date":"14/09/2025","mode":"ONLINE"},{"name":"आदित्य कापले","amount":5000,"date":"21/09/2025","mode":"CASH"},{"name":"सागर चव्हाण","amount":5001,"date":"15/09/2025","mode":"ONLINE"},{"name":"सुरज  कदम","amount":5000,"date":"19/09/2025","mode":"ONLINE"},{"name":"किरण कापले","amount":5000,"date":"02/10/2025","mode":"ONLINE"},{"name":"सौरभ पवार","amount":5001,"date":"20/09/2025","mode":"ONLINE"},{"name":"आदित्य पवार","amount":1000,"date":"20/09/2025","mode":"CASH"},{"name":"राज पवार/आकाश पवार","amount":8001,"date":"30/09/2025","mode":"ONLINE"},{"name":"अभिषेक साळुंखे","amount":2001,"date":"24/09/2025","mode":"ONLINE"},{"name":"सुरज शिंदे","amount":5000,"date":"02/10/2025","mode":"ONLINE"},{"name":"साई शिंदे","amount":5001,"date":"20/09/2025","mode":"CASH"},{"name":"निखिल जाधव","amount":3000,"date":"01/10/2025","mode":"ONLINE"},{"name":"श्री राज कोळी","amount":2001,"date":"27/09/2025","mode":"ONLINE"},{"name":"ऋतिक जाधव/आदेश जाधव","amount":8001,"date":"01/10/2025","mode":"ONLINE"},{"name":"पराग दुदुस्कर","amount":1111,"date":"24/09/2025","mode":"CASH"},{"name":"आकाश माने","amount":5000,"date":"23/09/2025","mode":"ONLINE"},{"name":"आकाश तेवर","amount":5000,"date":"28/09/2025","mode":"ONLINE"},{"name":"सुनील शिंदे","amount":3001,"date":"28/09/2025","mode":"ONLINE"},{"name":"अक्षय खामकर","amount":5001,"date":"30/09/2025","mode":"ONLINE"},{"name":"नितीन माने","amount":5001,"date":"23/09/2025","mode":"ONLINE"},{"name":"ललित शिंदे / सचिन शिंदे","amount":5000,"date":"26/09/2025","mode":"CASH"},{"name":"आदित्य तांगडे","amount":2000,"date":"26/09/2025","mode":"CASH"},{"name":"दीपक रामापुरे","amount":5000,"date":"27/09/2025","mode":"ONLINE"},{"name":"भैय्या सुतार","amount":5000,"date":"02/10/2025","mode":"ONLINE"},{"name":"केतन पवार","amount":5001,"date":"01/10/2025","mode":"ONLINE"},{"name":"प्रणील पवार","amount":1000,"date":"01/10/2025","mode":"ONLINE"},{"name":"साईराज शिंदे","amount":5000,"date":"10/10/2025","mode":"ONLINE"}],"area":[{"name":"आशिष किराणा","amount":101,"date":"10/09/2025","mode":"CASH"},{"name":"हनुमंत जाधव","amount":200,"date":"","mode":"CASH"},{"name":"जीत माने","amount":51,"date":"","mode":"ONLINE"},{"name":"शंकर बनगे","amount":101,"date":"","mode":"CASH"},{"name":"भीमराव येवले","amount":51,"date":"","mode":"CASH"},{"name":"गणपत सावंत","amount":51,"date":"","mode":"CASH"},{"name":"स्वाती जानकर","amount":111,"date":"","mode":"CASH"},{"name":"श्रेया जाधव","amount":201,"date":"","mode":"CASH"},{"name":"वेदांत जाधव","amount":50,"date":"","mode":"ONLINE"},{"name":"सोमनाथ सपकाळ","amount":51,"date":"","mode":"ONLINE"},{"name":"सचिन घोरपडे","amount":201,"date":"","mode":"CASH"},{"name":"रोहितदास राठोड","amount":101,"date":"","mode":"CASH"},{"name":"प्रणव माने माने","amount":102,"date":"","mode":"CASH"},{"name":"परीक्षित जगताप","amount":101,"date":"","mode":"CASH"},{"name":"सचिन कांबळे","amount":52,"date":"","mode":"CASH"},{"name":"वायदंडे","amount":200,"date":"","mode":"CASH"},{"name":"धनंजय पोतदार","amount":100,"date":"","mode":"CASH"},{"name":"वाघमोडे","amount":50,"date":"","mode":"CASH"},{"name":"कोळी","amount":51,"date":"","mode":"ONLINE"},{"name":"मुळीक","amount":102,"date":"","mode":"CASH"},{"name":"मेंढे","amount":101,"date":"","mode":"ONLINE"},{"name":"नलवडे","amount":101,"date":"","mode":"CASH"},{"name":"सोहम जाधव","amount":151,"date":"","mode":"CASH"},{"name":"श्रीकांत जाधव","amount":201,"date":"","mode":"CASH"},{"name":"यादव","amount":50,"date":"","mode":"CASH"},{"name":"सुर्वे","amount":50,"date":"","mode":"ONLINE"},{"name":"पाटील","amount":25,"date":"","mode":"CASH"},{"name":"माने","amount":50,"date":"","mode":"CASH"},{"name":"आर्यन दबडे","amount":50,"date":"","mode":"CASH"},{"name":"चव्हाण","amount":50,"date":"","mode":"CASH"},{"name":"रुपेश माने","amount":110,"date":"","mode":"CASH"},{"name":"आईसाहेब  फ्रुट   स्टॉल","amount":50,"date":"","mode":"CASH"},{"name":"रोहिणी शिरसागर","amount":51,"date":"11/09/2025","mode":"ONLINE"},{"name":"मारुती चोरट","amount":51,"date":"","mode":"ONLINE"},{"name":"राहुल करंडे","amount":200,"date":"","mode":"CASH"},{"name":"ओमकार जाधव","amount":50,"date":"","mode":"CASH"},{"name":"सचिन जाधव","amount":100,"date":"","mode":"CASH"},{"name":"अमित फडतरे","amount":501,"date":"","mode":"CASH"},{"name":"संदेश माळी","amount":100,"date":"","mode":"CASH"},{"name":"अजित होनराव","amount":100,"date":"","mode":"CASH"},{"name":"सचिन चव्हाण","amount":100,"date":"","mode":"CASH"},{"name":"संदीप भोसले","amount":201,"date":"","mode":"CASH"},{"name":"स्वप्निल पाटील","amount":51,"date":"","mode":"CASH"},{"name":"आकाश गायकवाड","amount":201,"date":"","mode":"ONLINE"},{"name":"शिवन्या जाधव","amount":201,"date":"","mode":"CASH"},{"name":"आकाश पाचांगणे","amount":101,"date":"","mode":"CASH"},{"name":"सागर कांबळे","amount":50,"date":"","mode":"CASH"},{"name":"संग्राम शिंदे","amount":100,"date":"","mode":"CASH"},{"name":"प्रणव कदम","amount":100,"date":"","mode":"CASH"},{"name":"अद्वय लाड","amount":201,"date":"","mode":"CASH"},{"name":"शुभम शेवते","amount":201,"date":"","mode":"CASH"},{"name":"विश्वजीत वायदंडे","amount":121,"date":"12/09/2025","mode":"CASH"},{"name":"श्रेयस मस्तके","amount":201,"date":"","mode":"ONLINE"},{"name":"संदीप सिंग","amount":101,"date":"","mode":"ONLINE"},{"name":"नंदकुमार","amount":40,"date":"","mode":"CASH"},{"name":"गणेश कुमार","amount":50,"date":"","mode":"CASH"},{"name":"रंजीत कुमार","amount":50,"date":"","mode":"CASH"},{"name":"पूर्वा गाडे","amount":50,"date":"","mode":"CASH"},{"name":"कुणाल सोनवणे","amount":50,"date":"","mode":"CASH"},{"name":"लक्ष्मण चव्हाण","amount":50,"date":"","mode":"CASH"},{"name":"आदित्य सोनवणे","amount":50,"date":"","mode":"CASH"},{"name":"चॅम्पियन","amount":100,"date":"","mode":"ONLINE"},{"name":"घाडगे","amount":20,"date":"","mode":"CASH"},{"name":"रेहान मुलानी","amount":51,"date":"","mode":"CASH"},{"name":"पुष्पेन्द्र सपेरा","amount":50,"date":"","mode":"ONLINE"},{"name":"अखिलेश कुमार","amount":100,"date":"","mode":"CASH"},{"name":"आदित्य","amount":20,"date":"","mode":"CASH"},{"name":"प्रणव नावडकर","amount":100,"date":"","mode":"CASH"},{"name":"अमित कुमार","amount":50,"date":"","mode":"CASH"},{"name":"धनाजी","amount":51,"date":"","mode":"CASH"},{"name":"राजकुमार जगदाळे","amount":100,"date":"","mode":"CASH"},{"name":"रेणुका किराणा","amount":51,"date":"","mode":"CASH"},{"name":"शहा परिवार","amount":1001,"date":"","mode":"CASH"},{"name":"वामन सपकाळ","amount":250,"date":"","mode":"CASH"},{"name":"विजय पवार","amount":251,"date":"","mode":"CASH"},{"name":"गोलू कुमार","amount":30,"date":"","mode":"CASH"},{"name":"रवींद्र कुमार","amount":21,"date":"","mode":"CASH"},{"name":"प्रकाश रॉय","amount":30,"date":"","mode":"CASH"},{"name":"कृष्णा यादव","amount":20,"date":"","mode":"CASH"},{"name":"विकास गुप्ता","amount":50,"date":"","mode":"CASH"},{"name":"राजकुमार","amount":51,"date":"","mode":"CASH"},{"name":"पंचदेव शर्मा","amount":50,"date":"","mode":"CASH"},{"name":"परी  किराणा","amount":50,"date":"","mode":"CASH"},{"name":"धनंजय विश्वकर्मा","amount":251,"date":"","mode":"ONLINE"},{"name":"अद्युत यादव","amount":50,"date":"","mode":"CASH"},{"name":"साईनाथ पोळ","amount":51,"date":"","mode":"CASH"},{"name":"सुषमा सुतार","amount":51,"date":"","mode":"ONLINE"},{"name":"शालीन कुमार","amount":50,"date":"","mode":"ONLINE"},{"name":"प्रतीक सुतार","amount":50,"date":"","mode":"CASH"},{"name":"चौधरी","amount":101,"date":"","mode":"ONLINE"},{"name":"वीरेंद्र कुमार","amount":51,"date":"","mode":"ONLINE"},{"name":"संतोष घोरपडे","amount":100,"date":"","mode":"ONLINE"},{"name":"दिनवंत कुमार","amount":50,"date":"","mode":"ONLINE"},{"name":"दीपक कुमार","amount":50,"date":"","mode":"CASH"},{"name":"गोलू कुमार","amount":50,"date":"","mode":"ONLINE"},{"name":"सुरज कुमार","amount":50,"date":"","mode":"ONLINE"},{"name":"पाकी केपट","amount":50,"date":"","mode":"ONLINE"},{"name":"साध्वी सेना","amount":100,"date":"","mode":"CASH"},{"name":"शरीफ पठाण","amount":50,"date":"","mode":"CASH"},{"name":"उमेश पटेल","amount":50,"date":"","mode":"CASH"},{"name":"धर्मेंद्र कुमार","amount":30,"date":"","mode":"ONLINE"},{"name":"रुपेश नाथ","amount":20,"date":"","mode":"CASH"},{"name":"अमर","amount":50,"date":"","mode":"CASH"},{"name":"दीपक नाय","amount":50,"date":"","mode":"ONLINE"},{"name":"बीजे पाडावन","amount":100,"date":"","mode":"ONLINE"},{"name":"आकाश","amount":50,"date":"","mode":"CASH"},{"name":"वसंत कुमार","amount":20,"date":"","mode":"CASH"},{"name":"पंकज कुमार","amount":100,"date":"","mode":"ONLINE"},{"name":"बंटी नाथ","amount":100,"date":"","mode":"ONLINE"},{"name":"विशाल","amount":100,"date":"","mode":"ONLINE"},{"name":"कमल भारद्वाज","amount":100,"date":"","mode":"ONLINE"},{"name":"त्रिवेदी","amount":20,"date":"","mode":"CASH"},{"name":"निखिल प्रजापती","amount":10,"date":"","mode":"CASH"},{"name":"अक्षय कवडे","amount":501,"date":"13/09/2025","mode":"CASH"},{"name":"महेश जाधव","amount":101,"date":"","mode":"CASH"},{"name":"अभिषेक कुराळे","amount":51,"date":"","mode":"CASH"},{"name":"करण इंगळे","amount":101,"date":"","mode":"CASH"},{"name":"किरण इंगळे","amount":101,"date":"","mode":"CASH"},{"name":"प्रताप जाधव","amount":71,"date":"","mode":"CASH"},{"name":"सचिन इलेक्ट्रिक","amount":151,"date":"","mode":"CASH"},{"name":"राजन जाधव","amount":51,"date":"","mode":"CASH"},{"name":"मयुरेश जाधव","amount":100,"date":"","mode":"CASH"},{"name":"रमेश मोरे","amount":100,"date":"","mode":"CASH"},{"name":"तानाजी नलवडे","amount":100,"date":"","mode":"CASH"},{"name":"नवनाथ लोंढे","amount":50,"date":"","mode":"CASH"},{"name":"ऋषिकेश जाधव","amount":1001,"date":"","mode":"CASH"},{"name":"नितीन नलावडे","amount":101,"date":"","mode":"CASH"},{"name":"संपत नलवडे","amount":50,"date":"","mode":"CASH"},{"name":"आशा महाडिक","amount":20,"date":"","mode":"CASH"},{"name":"अर्जुन सुतार","amount":100,"date":"","mode":"CASH"},{"name":"गणेश वाघमारे","amount":100,"date":"","mode":"CASH"},{"name":"मंगल भोसले","amount":50,"date":"","mode":"CASH"},{"name":"पूजा सावंत","amount":51,"date":"","mode":"CASH"},{"name":"संतोष बागल","amount":100,"date":"","mode":"CASH"},{"name":"प्रिया नि नावाने","amount":100,"date":"","mode":"CASH"},{"name":"समीर शेख","amount":101,"date":"","mode":"CASH"},{"name":"अनिल काटे","amount":50,"date":"","mode":"CASH"},{"name":"जानाई मळाई रसवंती","amount":51,"date":"14/09/2025","mode":""},{"name":"ओंकारेश्वर मेडिकल","amount":1000,"date":"","mode":""},{"name":"वरद गायकवाड","amount":100,"date":"","mode":""},{"name":"आर एम मोबाईल","amount":101,"date":"","mode":""},{"name":"राज पुरोहित","amount":100,"date":"","mode":""},{"name":"किशोर जगदाळे","amount":100,"date":"","mode":""},{"name":"संतोष वाईकर समर्थ इलेक्ट्रॉन","amount":101,"date":"","mode":""},{"name":"शिंदे टायर्स","amount":51,"date":"","mode":""},{"name":"श्रीयांस  ऑटो गॅरेज","amount":101,"date":"","mode":""},{"name":"रामचंद्र ढोणे","amount":100,"date":"","mode":""},{"name":"सलमान हाश्मी दिलदार","amount":101,"date":"","mode":""},{"name":"रंजीत कुंभार कावेरी","amount":51,"date":"","mode":""},{"name":"अतुल आरेकर","amount":101,"date":"","mode":""},{"name":"जगदीश काटे","amount":101,"date":"","mode":""},{"name":"बाळकृष्ण माने","amount":100,"date":"","mode":""},{"name":"ओम पाचंगणी रेशमा","amount":151,"date":"","mode":""},{"name":"नंदकुमार गोरे","amount":101,"date":"","mode":""},{"name":"मारुती जाधव भारती","amount":51,"date":"","mode":""},{"name":"उत्तम घाडगे","amount":501,"date":"","mode":""},{"name":"अजित माने","amount":200,"date":"","mode":""},{"name":"शिवराज ऑटो व्हील्स","amount":1000,"date":"","mode":""},{"name":"सुरज इंटरप्राईजेस","amount":201,"date":"","mode":""},{"name":"जगदंब हार्डवेअर","amount":101,"date":"","mode":""},{"name":"सूर्या ऑटो गॅरेज","amount":100,"date":"","mode":""},{"name":"गुरुकृपा स्टॉल","amount":51,"date":"","mode":""},{"name":"धर्मराज भोसले","amount":251,"date":"","mode":""},{"name":"पवार स्नॅक्स सेंटर","amount":101,"date":"","mode":""},{"name":"भाग्यश्री कलेक्शन","amount":201,"date":"","mode":""},{"name":"फिश सेंटर","amount":101,"date":"","mode":""},{"name":"कृष्णाली द ब्युटी पार्लर","amount":101,"date":"","mode":""},{"name":"विशाल घाडगे","amount":51,"date":"","mode":""},{"name":"रिंगल चिकन सेंटर","amount":251,"date":"","mode":""},{"name":"अण्णा चाय वाला","amount":50,"date":"","mode":""},{"name":"अजित पवार","amount":201,"date":"","mode":""},{"name":"रेशमा जय भवानी मेडिकल","amount":101,"date":"","mode":""},{"name":"मधुबन पान शॉप","amount":101,"date":"","mode":""},{"name":"निलेश गुरव गवळी","amount":151,"date":"","mode":""},{"name":"दिपाली अंबिका गायकवाड","amount":51,"date":"","mode":""},{"name":"प्रवीण येवले","amount":100,"date":"","mode":""},{"name":"पियुष कचरे","amount":101,"date":"","mode":""},{"name":"प्रशांत जाधव","amount":101,"date":"","mode":""},{"name":"राज शिंदे","amount":100,"date":"","mode":""},{"name":"सदाशिव कदम","amount":101,"date":"","mode":""},{"name":"शौर्य निंबाळकर","amount":100,"date":"","mode":""},{"name":"वरद जाधव","amount":100,"date":"","mode":""},{"name":"मनोहर","amount":50,"date":"","mode":""},{"name":"नवनाथ पवार","amount":100,"date":"15/09/2025","mode":""},{"name":"जेधेराव पवार","amount":101,"date":"","mode":""},{"name":"अनिल चव्हाण","amount":101,"date":"","mode":""},{"name":"अंकुश बोबडे","amount":100,"date":"","mode":""},{"name":"ऐश्वर्या घड्याळ","amount":100,"date":"","mode":""},{"name":"शंकर हजारे","amount":51,"date":"","mode":""},{"name":"वसंत सावंत","amount":101,"date":"","mode":""},{"name":"शिवम गावडे","amount":1001,"date":"","mode":""},{"name":"केदार किराणा","amount":151,"date":"16/09/2025","mode":""},{"name":"साईराज पवार","amount":51,"date":"","mode":""},{"name":"बाळासाहेब फाळके","amount":101,"date":"","mode":""},{"name":"ऋषिकेश बर्गे","amount":101,"date":"","mode":""},{"name":"गुरुकृपा किराणा","amount":101,"date":"","mode":""},{"name":"वेदांत ताटे","amount":51,"date":"","mode":""},{"name":"सुरज कुमार","amount":51,"date":"","mode":""},{"name":"गुड्डू राकेश कुमार","amount":500,"date":"","mode":""},{"name":"सुजित किराणा","amount":51,"date":"","mode":""},{"name":"विहान कोळी","amount":101,"date":"","mode":""},{"name":"आरुष किरवे","amount":501,"date":"","mode":""},{"name":"राजवीर माने","amount":100,"date":"","mode":""},{"name":"अंकुश जाधव","amount":50,"date":"","mode":""},{"name":"सुरेश मोरे","amount":501,"date":"","mode":""},{"name":"शिवाजी मोरे","amount":101,"date":"","mode":""},{"name":"फुलाबाई माने","amount":51,"date":"","mode":""},{"name":"प्रकाश नलवडे","amount":201,"date":"","mode":""},{"name":"दादासाहेब नरोटे","amount":101,"date":"","mode":""},{"name":"दीपती शेडगे","amount":1001,"date":"","mode":""},{"name":"आयुष जाधव","amount":121,"date":"","mode":""},{"name":"अशोक गायकवाड","amount":101,"date":"","mode":""},{"name":"ऋषिकेश खटावकर","amount":101,"date":"","mode":""},{"name":"शिवांजली फ्लोअर मिल","amount":501,"date":"","mode":""},{"name":"भगवान कदम","amount":251,"date":"","mode":""},{"name":"तन्मय महाडिक","amount":105,"date":"","mode":""},{"name":"विनोद शिंदे","amount":101,"date":"","mode":""},{"name":"सुधीर पाटील","amount":100,"date":"","mode":""},{"name":"अशोक ठोंबरे","amount":201,"date":"17/09/2025","mode":""},{"name":"अविनाश मोरे","amount":101,"date":"","mode":""},{"name":"किरण जावळे","amount":51,"date":"","mode":""},{"name":"वरद कुरळेकर","amount":100,"date":"","mode":""},{"name":"संतोष बळी","amount":50,"date":"","mode":""},{"name":"धनाजी कदम","amount":51,"date":"","mode":""},{"name":"देवांश उंबरे","amount":51,"date":"","mode":""},{"name":"अतुल्य बासुंदी","amount":50,"date":"","mode":""},{"name":"अशोक जाधव","amount":51,"date":"","mode":""},{"name":"संतोष गायकवाड","amount":101,"date":"","mode":""},{"name":"तेजस नाळे","amount":51,"date":"","mode":""},{"name":"प्रकाश तरडे","amount":100,"date":"","mode":""},{"name":"अमोल कदम","amount":101,"date":"","mode":""},{"name":"निखिल घोरपडे","amount":101,"date":"","mode":""},{"name":"अनंत घाडगे","amount":100,"date":"","mode":""},{"name":"रमेश गायकवाड","amount":101,"date":"","mode":""},{"name":"विघ्नेश सरवदे","amount":100,"date":"","mode":""},{"name":"विक्रम कदम","amount":100,"date":"","mode":""},{"name":"प्रशांत धोंडे","amount":101,"date":"","mode":""},{"name":"प्रशांत देसाई","amount":100,"date":"","mode":""},{"name":"आकाश चव्हाण","amount":200,"date":"","mode":""},{"name":"प्रशांत तांगडे","amount":101,"date":"","mode":""},{"name":"माऊली किराणा","amount":501,"date":"","mode":""},{"name":"श्रावणी चोरगे","amount":500,"date":"","mode":""},{"name":"ओमकार कीर्तन","amount":51,"date":"","mode":""},{"name":"नाथा काटे","amount":101,"date":"","mode":""},{"name":"रोहित पाटील","amount":101,"date":"","mode":""},{"name":"अक्षदा बोर्ड रे","amount":200,"date":"","mode":""},{"name":"नंदकुमार गायकवाड","amount":100,"date":"","mode":""},{"name":"आकाश रेड्डी","amount":51,"date":"","mode":""},{"name":"महेश जाधव","amount":201,"date":"18/09/2025","mode":""},{"name":"सई खेडेकर","amount":51,"date":"","mode":""},{"name":"नेहा पंडित","amount":301,"date":"","mode":""},{"name":"संजय मोरे","amount":501,"date":"","mode":""},{"name":"सोनाली सावंत","amount":100,"date":"","mode":""},{"name":"चैतन्य महा मुळे","amount":50,"date":"","mode":""},{"name":"अभय साठे","amount":101,"date":"","mode":""},{"name":"सह्याद्री स्टील","amount":1000,"date":"","mode":""},{"name":"पाटील ग्लास वर्क्स","amount":500,"date":"","mode":""},{"name":"रोहित मसाले","amount":520,"date":"","mode":""},{"name":"माखन यादव","amount":1001,"date":"","mode":""},{"name":"ऋषिकेश कदम","amount":100,"date":"","mode":""},{"name":"ओम साई फुड्स","amount":250,"date":"","mode":""},{"name":"सह्याद्री स्टाईल","amount":501,"date":"","mode":""},{"name":"स्वदेशी स्प्रिंकलर","amount":101,"date":"","mode":""},{"name":"संतोष सावंत","amount":51,"date":"","mode":""},{"name":"अर्णव घाडगे","amount":101,"date":"","mode":""},{"name":"पवार","amount":151,"date":"","mode":""},{"name":"हंसिका","amount":100,"date":"","mode":""},{"name":"विहान धुमाळ","amount":100,"date":"","mode":""},{"name":"कमलेश","amount":52,"date":"","mode":""},{"name":"महादेव सातपुते","amount":101,"date":"","mode":""},{"name":"राहुल धोत्रे","amount":51,"date":"","mode":""},{"name":"पियुष मोरे","amount":101,"date":"","mode":""},{"name":"प्रथमेश मोकाशी","amount":250,"date":"","mode":""},{"name":"गणेश पोतदार","amount":500,"date":"","mode":""},{"name":"आदित्य मोरे","amount":501,"date":"","mode":""},{"name":"देव पवार","amount":100,"date":"","mode":""},{"name":"नरेश पवार","amount":1100,"date":"19/09/2025","mode":""},{"name":"तांगडे अँड सन्स","amount":101,"date":"","mode":""},{"name":"महेश पवार","amount":100,"date":"","mode":""},{"name":"अमित पाटील","amount":101,"date":"","mode":""},{"name":"श्री कोटेश्वर इलेक्ट्रिक","amount":200,"date":"","mode":""},{"name":"मंगेश फडतरे","amount":101,"date":"","mode":""},{"name":"रोज","amount":50,"date":"","mode":""},{"name":"अमृता वाघेला","amount":50,"date":"","mode":""},{"name":"लक्ष्मण काळे","amount":50,"date":"","mode":""},{"name":"सागर शिंदे","amount":201,"date":"","mode":""},{"name":"प्रवीण तेवर","amount":501,"date":"","mode":""},{"name":"एचपी पेट्रोल तेजस","amount":1001,"date":"20/09/2025","mode":""},{"name":"शिवशक्ती स्क्रॅप","amount":251,"date":"","mode":""},{"name":"ओमकार मार्ट","amount":501,"date":"","mode":""},{"name":"श्रीकृष्ण फेब्रिकेशन","amount":251,"date":"","mode":""},{"name":"दत्तात्रय तांगडे","amount":151,"date":"","mode":""},{"name":"हॉटेल शिव मल्हार","amount":100,"date":"","mode":""},{"name":"प्रवीण लोंढे","amount":200,"date":"21/09/2025","mode":""},{"name":"कृष्णाजी खामकर","amount":501,"date":"","mode":""},{"name":"प्रकाश कापले","amount":101,"date":"","mode":""},{"name":"ऋषिकेश किशोर खटावकर","amount":251,"date":"22/09/2025","mode":""},{"name":"वैभव चोरगे","amount":500,"date":"23/09/2025","mode":""},{"name":"शिवेंद्र भोसले","amount":500,"date":"","mode":""},{"name":"राजकुमार चका ले","amount":150,"date":"","mode":""},{"name":"सागर जंगम","amount":101,"date":"","mode":""},{"name":"युवराज जगदाळे","amount":1000,"date":"","mode":""},{"name":"फाळके","amount":200,"date":"24/09/2025","mode":""},{"name":"नीता भांडीरगे","amount":501,"date":"","mode":""},{"name":"भैय्या कोळी 1 नारळ खरेदी","amount":30,"date":"","mode":""},{"name":"सृजन शिंदे","amount":100,"date":"","mode":""},{"name":"मंगेश वाघेला","amount":500,"date":"","mode":""},{"name":"वसंत ढाणे","amount":501,"date":"25/09/2025","mode":""},{"name":"स्वप्निल पंडित","amount":51,"date":"","mode":""},{"name":"ओम साळुंखे","amount":101,"date":"","mode":""},{"name":"अशोक सुतार","amount":551,"date":"","mode":""},{"name":"दिनेश च काले","amount":101,"date":"","mode":""},{"name":"कार्तिक बोभाटे","amount":100,"date":"","mode":""},{"name":"नारळ","amount":135,"date":"","mode":""},{"name":"शांताराम मोरे","amount":101,"date":"26/09/2025","mode":""},{"name":"अधिक चव्हाण","amount":500,"date":"","mode":""},{"name":"मनोज गायकवाड","amount":2000,"date":"","mode":""},{"name":"अंकुश खामकर","amount":1001,"date":"","mode":""},{"name":"कृष्णात दिवेदी","amount":101,"date":"","mode":""},{"name":"चंद्रकांत खामकर","amount":1001,"date":"","mode":""},{"name":"अविनाश पवार","amount":1001,"date":"","mode":""},{"name":"सदाशिव किरडत","amount":0,"date":"27/09/2025","mode":""},{"name":"राहुल कापले","amount":500,"date":"","mode":""},{"name":"जयसिंग रामचंद्र पवार","amount":500,"date":"28/09/2025","mode":""},{"name":"ज्ञानेश्वर  कापले","amount":1000,"date":"","mode":""},{"name":"प्रमोद कदम","amount":100,"date":"","mode":""},{"name":"सारिका माने","amount":301,"date":"","mode":""},{"name":"पुष्कर वेदपाठक","amount":151,"date":"","mode":""},{"name":"शौर्य सचिन पवार","amount":101,"date":"","mode":""},{"name":"त्रैलोक्य जाधव","amount":100,"date":"29/09/2025","mode":""},{"name":"मयूर सुनील नाव खरे","amount":101,"date":"30/09/2025","mode":""},{"name":"सचिन तुपे","amount":51,"date":"","mode":""},{"name":"नंदा जाधव","amount":50,"date":"","mode":""},{"name":"राजश्री जाधव","amount":21,"date":"","mode":""},{"name":"विराज भिसे","amount":100,"date":"","mode":""},{"name":"विशाल कदम","amount":200,"date":"","mode":""},{"name":"विश्वात्मा जाधव","amount":200,"date":"","mode":""},{"name":"सार्थक साळुंखे","amount":250,"date":"","mode":""},{"name":"साईनंद खटावकर","amount":101,"date":"","mode":""},{"name":"संतोष खटावकर","amount":251,"date":"","mode":""},{"name":"योगेश सोनवणे","amount":500,"date":"","mode":""},{"name":"विवेक मदने","amount":100,"date":"","mode":""},{"name":"प्रथमेश गणेश पवार","amount":101,"date":"","mode":""},{"name":"विजय चव्हाण","amount":500,"date":"01/10/2025","mode":""},{"name":"विनोद वाघेला","amount":100,"date":"","mode":""},{"name":"अमृत वाघेला","amount":30,"date":"02/10/2025","mode":""}],"stats":{"expenses":235678,"members":167569,"area":61481,"nExp":110,"nMem":33,"nArea":345,"income":229050,"balance":-6628}};
+var TAB = 'expenses';
+
+function money(n){var v=Number(n||0);return '₹'+v.toLocaleString('en-IN',{maximumFractionDigits:v%1?2:0});}
+function short(n){var v=Number(n||0);if(v>=100000)return '₹'+(v/100000).toFixed(2).replace(/\.00$/,'')+' लाख';if(v>=1000)return '₹'+Math.round(v/1000)+'K';return '₹'+v;}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function $(id){return document.getElementById(id);}
+
+var S = D.stats;
+$('tIncome').textContent = short(S.income);
+$('tSpent').textContent  = short(S.expenses);
+$('tBal').textContent    = short(Math.abs(S.balance));
+$('tBalLbl').textContent = S.balance < 0 ? 'तूट' : 'शिल्लक';
+$('tCount').textContent  = S.nExp + S.nMem + S.nArea;
+
+var COLS = {
+  expenses: [
+    ['#',       function(r,i){return '<td class="n">'+(i+1)+'</td>';}],
+    ['तारीख',   function(r){return '<td class="n">'+(r.date?esc(r.date):'<span class="dim">—</span>')+'</td>';}],
+    ['खर्चाचे कारण', function(r){return '<td>'+esc(r.reason)+(r.note?'<span class="note">'+esc(r.note)+'</span>':'')+'</td>';}],
+    ['मध्यस्थी कार्यकर्ता', function(r){return '<td class="dim">'+esc(r.by)+'</td>';}],
+    ['पद्धत',   function(r){return '<td>'+(r.mode?'<span class="pill">'+esc(r.mode)+'</span>':'')+'</td>';}],
+    ['रक्कम',   function(r){return '<td class="amt">'+money(r.amount)+'</td>';}]
+  ],
+  members: [
+    ['#',      function(r,i){return '<td class="n">'+(i+1)+'</td>';}],
+    ['तारीख',  function(r){return '<td class="n">'+(r.date?esc(r.date):'<span class="dim">—</span>')+'</td>';}],
+    ['नाव',    function(r){return '<td>'+esc(r.name)+'</td>';}],
+    ['पद्धत',  function(r){return '<td>'+(r.mode?'<span class="pill">'+esc(r.mode)+'</span>':'')+'</td>';}],
+    ['रक्कम',  function(r){return '<td class="amt">'+money(r.amount)+'</td>';}]
+  ]
+};
+COLS.area = COLS.members;
+
+function rowsFor(tab){ return tab === 'expenses' ? D.expenses : tab === 'members' ? D.members : D.area; }
+
+function render(){
+  var q = $('q').value.trim().toLowerCase();
+  var rows = rowsFor(TAB).filter(function(r){
+    if(!r.amount && !(r.reason||r.name)) return false;
+    if(!q) return true;
+    return [r.reason,r.name,r.by,r.mode,r.note,r.date].some(function(v){
+      return String(v||'').toLowerCase().indexOf(q) > -1;
+    });
+  });
+
+  var cols = COLS[TAB];
+  var head = '<thead><tr>'+cols.map(function(c){
+    return '<th'+(c[0]==='रक्कम'?' style="text-align:right"':'')+'>'+esc(c[0])+'</th>';
+  }).join('')+'</tr></thead>';
+
+  var body = '<tbody>'+rows.map(function(r,i){
+    return '<tr>'+cols.map(function(c){return c[1](r,i);}).join('')+'</tr>';
+  }).join('')+'</tbody>';
+
+  $('tbl').innerHTML = rows.length ? head+body
+    : '<tbody><tr><td style="padding:30px;text-align:center" class="dim">काही सापडले नाही.</td></tr></tbody>';
+
+  var total = rows.reduce(function(s,r){return s+r.amount;},0);
+  $('cRows').textContent = rows.length + ' नोंदी';
+  $('cTotal').textContent = money(total);
+}
+
+function bars(el, list){
+  var max = list.reduce(function(m,r){return Math.max(m,r.amount);},0)||1;
+  el.innerHTML = list.map(function(r){
+    return '<div class="r"><div class="t"><span>'+esc(r.label)+'</span><b>'+money(r.amount)+'</b></div>'+
+      '<div class="track"><div class="fill" style="width:'+Math.max(3,Math.round(r.amount/max*100))+'%"></div></div></div>';
+  }).join('');
+}
+
+function group(rows, key, limit){
+  var m = {};
+  rows.forEach(function(r){
+    var k = String(r[key]||'').trim() || 'नोंद नाही';
+    m[k] = (m[k]||0) + r.amount;
+  });
+  var out = Object.keys(m).sort(function(a,b){return m[b]-m[a];})
+    .map(function(k){return {label:k, amount:m[k]};});
+  return limit ? out.slice(0,limit) : out;
+}
+
+function summary(){
+  $('sumStats').innerHTML =
+    stat('एकूण जमा', money(S.income), (S.nMem+S.nArea)+' नोंदी','') +
+    stat('एकूण खर्च', money(S.expenses), S.nExp+' नोंदी','') +
+    stat(S.balance<0?'तूट':'शिल्लक', money(Math.abs(S.balance)),
+      'सभासद '+short(S.members)+' · क्षेत्र '+short(S.area), S.balance<0?'bad':'good');
+
+  $('sumCallout').innerHTML = S.balance < 0
+    ? 'खर्च जमेपेक्षा <b>'+money(Math.abs(S.balance))+'</b> ने जास्त झाला आहे. तीन वेगळ्या टॅबमधील आकडे हाताने जुळवल्याशिवाय हे लक्षात येत नव्हतं — नवीन प्रणालीत हा आकडा रोज दिसेल.'
+    : 'जमा आणि खर्चाचा ताळमेळ बरोबर आहे.';
+
+  bars($('sumBig'), group(D.expenses,'reason',12));
+  bars($('sumMode'), group(D.members.concat(D.area),'mode'));
+  bars($('sumBy'), group(D.expenses,'by',10));
+}
+
+Array.prototype.forEach.call($('tabs').querySelectorAll('button'), function(b){
+  b.addEventListener('click', function(){
+    TAB = b.dataset.t;
+    Array.prototype.forEach.call($('tabs').querySelectorAll('button'), function(x){
+      x.classList.toggle('on', x === b);
+    });
+    var isSum = TAB === 'summary';
+    $('sumPanel').hidden = !isSum;
+    $('listPanel').hidden = isSum;
+    if(isSum){ summary(); return; }
+    $('pTitle').textContent = b.textContent;
+    $('q').value = '';
+    render();
+  });
+});
+
+function stat(k,v,s,cls){
+  return '<div class="stat '+cls+'"><div class="k">'+esc(k)+'</div><div class="v">'+esc(v)+
+    '</div><div class="s">'+esc(s)+'</div></div>';
+}
+
+$('q').addEventListener('input', render);
+render();
+</script>
