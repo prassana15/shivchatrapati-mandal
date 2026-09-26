@@ -181,6 +181,22 @@
 
   function showYearBanner() {
     var el = $('yearBanner');
+
+    // The festival year has rolled over but nobody has moved ActiveYear on.
+    // Everything entered now would land in the previous year's accounts, so
+    // say so plainly rather than letting it happen quietly.
+    if (CFG.calendarYear && CFG.calendarYear !== CFG.activeYear) {
+      el.classList.remove('hide');
+      el.classList.add('year-alert');
+      el.innerHTML = '<strong>लक्ष द्या —</strong> आजचे वर्ष <b>' +
+        U.esc(CFG.calendarYear) + '</b> आहे, पण नोंदी <b>' +
+        U.esc(CFG.activeYear) + '</b> मध्ये जात आहेत.<br>' +
+        'ॲडमिनने नोंदवहीत <b>मंडळ → Set active year</b> करून ' +
+        U.esc(CFG.calendarYear) + ' करावे.';
+      return;
+    }
+    el.classList.remove('year-alert');
+
     if (!isPastYear()) { el.classList.add('hide'); return; }
     el.classList.remove('hide');
     el.textContent = YEAR + ' च्या जुन्या नोंदी पाहत आहात. नवीन नोंद ' +

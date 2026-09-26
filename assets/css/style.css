@@ -36,6 +36,10 @@
 
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); }
 
+/* Nothing should ever push the page sideways — a stray wide element used to
+   scroll the login card half off screen. */
+html, body { overflow-x: hidden; }
+
 body {
   margin: 0;
   background: var(--cream);
@@ -297,8 +301,16 @@ section.alt { background: var(--cream-2); }
 
 /* ------------------------------------------------- self-hosted reel player */
 
+/* Sized by HEIGHT, not width. These clips are 9:16, so letting the width
+   drive the size makes them absurdly tall in a wide column — a 360px cell
+   would be 640px high. Fixing the height and letting width follow keeps
+   every reel the same tidy size wherever it sits. */
 .vid {
-  position: relative; width: 100%; aspect-ratio: 9 / 16;
+  position: relative;
+  aspect-ratio: 9 / 16;
+  height: clamp(300px, 48vh, 460px);
+  width: auto; max-width: 100%;
+  margin: 0 auto;
   border-radius: var(--r-md); overflow: hidden;
   background: #000; box-shadow: var(--shadow-sm);
 }
@@ -314,10 +326,14 @@ section.alt { background: var(--cream-2); }
 .vid-sound:hover { background: rgba(0,0,0,.65); }
 .vid-sound:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }
 
-/* A slot holding a real video needs none of the placeholder framing. */
-.figure.is-video {
+/* A slot holding a real video needs none of the placeholder framing — no
+   4:3 box, no border, no centring grid. :has() covers it even if the class
+   has not been applied yet, so the video is never squeezed into a 4:3 frame
+   and zoom-cropped while it loads. */
+.figure.is-video,
+.figure:has(.vid) {
   aspect-ratio: auto; background: none; border: 0; padding: 0;
-  display: block; max-width: 400px; margin-inline: auto;
+  display: block; max-width: none; box-shadow: none;
 }
 
 /* ---------------------------------------------------------------- timeline */
@@ -373,16 +389,20 @@ section.alt { background: var(--cream-2); }
 
 /* ------------------------------------------------- instagram reel embeds */
 
-.ig-grid { display: grid; gap: 16px; grid-template-columns: 1fr; align-items: start; }
-@media (min-width: 620px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1000px) { .ig-grid { grid-template-columns: repeat(3, 1fr); } }
+/* Columns size themselves to the reels rather than the other way round, so
+   nothing is ever stretched full-bleed on a narrow window. */
+.ig-grid {
+  display: grid; gap: 18px; align-items: start; justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 260px));
+}
 
 /* Instagram injects its own iframe; keep it inside our column. */
 .ig-grid .instagram-media { min-width: 0 !important; max-width: 100% !important; }
 
 /* One cell of the grid, whether it ends up holding an mp4 or an embed. */
-.reel-slot { min-width: 0; }
-.reel-slot .vid { border-radius: var(--r-md); }
+.reel-slot { min-width: 0; width: 100%; }
+/* In the grid the cells are already narrow, so let width lead here. */
+.reel-slot .vid { height: auto; width: 100%; }
 
 .ig-empty {
   grid-column: 1 / -1; text-align: center; padding: 36px 24px;
@@ -469,9 +489,14 @@ section.alt { background: var(--cream-2); }
 .app-body { background: var(--cream-2); }
 
 .auth-card {
-  max-width: 400px; margin: 8vh auto; background: var(--white);
+  width: 100%; max-width: 400px; margin: 8vh auto; background: var(--white);
   border: 1px solid var(--line); border-radius: var(--r-lg);
   padding: 34px 30px; box-shadow: var(--shadow-md);
+}
+/* On a narrow phone the 30px side padding was pushing the labels off the
+   left edge. Tighten it and sit the card nearer the top. */
+@media (max-width: 460px) {
+  .auth-card { padding: 26px 18px; margin: 3vh auto; border-radius: var(--r-md); }
 }
 .auth-card .mark { margin: 0 auto 16px; width: 54px; height: 54px; font-size: 1.5rem; }
 
@@ -546,6 +571,12 @@ input.locked:focus { outline: none; border-color: var(--line); }
   background: #fff4e0; border: 1px solid #e8c882; color: #6b4a12;
   border-radius: var(--r-sm); padding: 10px 14px; margin-top: 14px; font-size: .9rem;
 }
+/* Stronger still: the festival year rolled over and ActiveYear did not. */
+.year-banner.year-alert {
+  background: #fdeceb; border-color: #e6a49d; color: var(--bad);
+  border-left-width: 4px; padding: 13px 16px; line-height: 1.55;
+}
+.year-banner.year-alert b { color: inherit; }
 .app-bar .who b { display: block; font-size: .92rem; opacity: 1; }
 
 .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 18px 0 2px; -webkit-overflow-scrolling: touch; }

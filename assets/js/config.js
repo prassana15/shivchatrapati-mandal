@@ -8,7 +8,7 @@
    Deploy > Manage deployments > edit (pencil) > Version: New version,
    which keeps the same url. Always use that, or this line goes stale.
    ------------------------------------------------------------------------- */
-window.MANDAL_API = 'PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE';
+window.MANDAL_API = 'https://script.google.com/macros/s/AKfycbzrLHSIY2HyRBxiGkVYV0MwL0vGPrzvPKIjwJ0hKSMH5v90WKpj6RBp_NGL3gfPk_Um/exec';
 
 /* Shared helpers ---------------------------------------------------------- */
 
