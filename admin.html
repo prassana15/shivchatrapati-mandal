@@ -21,17 +21,35 @@
       <h2 style="text-align:center;font-size:1.3rem">कार्यकर्ता लॉगिन</h2>
       <p class="muted" style="text-align:center">मंडळाची नोंदवही</p>
 
-      <label for="email">ईमेल</label>
-      <input id="email" type="email" autocomplete="username" placeholder="name@gmail.com">
+      <label for="email">युजर आयडी</label>
+      <input id="email" type="text" autocomplete="username"
+             autocapitalize="none" spellcheck="false"
+             placeholder="prassana-yadav">
 
-      <label for="pin">पिन</label>
-      <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" placeholder="४ अंकी पिन">
+      <label for="pin">पासवर्ड</label>
+      <div class="pw-wrap">
+        <input id="pin" type="password" autocomplete="current-password"
+               placeholder="पासवर्ड">
+        <button type="button" id="pwToggle" class="pw-toggle"
+                aria-controls="pin" aria-pressed="false"
+                aria-label="पासवर्ड दाखवा" title="पासवर्ड दाखवा">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path class="eye-open" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  d="M1.8 12S5.5 5.4 12 5.4 22.2 12 22.2 12 18.5 18.6 12 18.6 1.8 12 1.8 12Z"/>
+            <circle class="eye-open" cx="12" cy="12" r="3.1" fill="none"
+                    stroke="currentColor" stroke-width="1.8"/>
+            <path class="eye-slash" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" d="M4 20 20 4"/>
+          </svg>
+        </button>
+      </div>
 
       <button class="btn btn-primary btn-block" id="loginBtn" style="margin-top:22px">लॉगिन करा</button>
       <div class="msg err" id="loginMsg"></div>
 
       <p class="muted" style="margin-top:18px;text-align:center">
-        पिन मिळाला नाही? मंडळाच्या ॲडमिनशी संपर्क करा.<br>
+        पासवर्ड मिळाला नाही? मंडळाच्या ॲडमिनशी संपर्क करा.<br>
         <a href="index.html">← संकेतस्थळावर परत</a>
       </p>
     </div>
@@ -43,7 +61,8 @@
   <div class="app-bar">
     <div class="wrap">
       <strong style="font-family:var(--display);font-size:1.05rem">नोंदवही</strong>
-      <span class="muted" id="yearChip" style="color:rgba(255,255,255,.7);font-size:.82rem"></span>
+      <label for="yearSel" class="sr-only">वर्ष</label>
+      <select id="yearSel" class="year-select" title="वर्ष निवडा"></select>
       <span class="who"><b id="whoName"></b><span id="whoRole"></span></span>
       <button class="btn btn-light btn-sm" id="logoutBtn">बाहेर</button>
     </div>
@@ -53,9 +72,12 @@
     <div class="tabs" id="tabs">
       <button data-tab="members" class="on">सभासद वर्गणी</button>
       <button data-tab="area">क्षेत्र वर्गणी</button>
+      <button data-tab="sponsors">देणगी</button>
       <button data-tab="expenses">खर्च</button>
       <button data-tab="summary">एकूण हिशोब</button>
     </div>
+
+    <div class="year-banner hide" id="yearBanner"></div>
 
     <!-- entry ------------------------------------------------------- -->
     <div class="panel" id="formPanel">
@@ -108,6 +130,14 @@
         <div>
           <h3 style="margin-bottom:6px">मध्यस्थी कार्यकर्ता</h3>
           <div class="barlist" id="sumKaryakarta"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:6px">देणगी कशासाठी</h3>
+          <div class="barlist" id="sumPurpose"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom:6px">सर्वाधिक देणगीदार</h3>
+          <div class="barlist" id="sumSponsors"></div>
         </div>
       </div>
     </div>
