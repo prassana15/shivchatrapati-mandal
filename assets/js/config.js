@@ -12,6 +12,31 @@ window.MANDAL_API = 'https://script.google.com/macros/s/AKfycbzrLHSIY2HyRBxiGkVY
 
 /* Shared helpers ---------------------------------------------------------- */
 
+/* ---------------------------------------------------------- activity bar */
+
+/* Apps Script can take a few seconds to wake. Without a visible signal the
+   page looks frozen and people tap the button again, so every request drives
+   a thin bar across the top of the window. */
+var netPending = 0;
+
+function netBar() {
+  var el = document.getElementById('netBar');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'netBar';
+    document.body.appendChild(el);
+  }
+  return el;
+}
+
+function netStart() {
+  if (++netPending === 1) netBar().classList.add('on');
+}
+
+function netStop() {
+  if (--netPending <= 0) { netPending = 0; netBar().classList.remove('on'); }
+}
+
 window.MandalUtil = {
   /** ₹1,67,569 - Indian digit grouping, no paise unless there are any. */
   money: function (n) {
@@ -60,16 +85,30 @@ window.MandalUtil = {
    * Script cannot answer. Do not change it to application/json.
    */
   post: function (payload) {
+    netStart();
     return fetch(window.MANDAL_API, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
-    }).then(function (r) { return r.json(); });
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { netStop(); return j; })
+      .catch(function (e) { netStop(); throw e; });
   },
 
-  get: function (action) {
-    return fetch(window.MANDAL_API + '?action=' + encodeURIComponent(action))
-      .then(function (r) { return r.json(); });
+  /**
+   * Reads go through POST as well. A GET to /exec is answered with a redirect
+   * to googleusercontent.com, and that hop is flaky from some networks —
+   * POST is the path already proven by the login, so use it for everything.
+   */
+  get: function (action, extra) {
+    var payload = { action: action };
+    if (extra) {
+      for (var k in extra) {
+        if (Object.prototype.hasOwnProperty.call(extra, k)) payload[k] = extra[k];
+      }
+    }
+    return this.post(payload);
   },
 
   configured: function () {

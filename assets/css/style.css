@@ -88,9 +88,56 @@ p  { margin: 0 0 1rem; }
   border-bottom-color: var(--line);
   box-shadow: 0 1px 12px rgba(36, 29, 23, .05);
 }
-/* Every page except the home hero starts scrolled, so the bar is never
-   invisible over ordinary content. */
-.site-header.solid { background: rgba(253,248,241,.93); border-bottom-color: var(--line); }
+/* Over the dark hero the bar is transparent, so its contents must be light.
+   Once .scrolled lands the cream background returns and so do dark inks. */
+.site-header:not(.scrolled) .brand .txt strong { color: #fff; }
+.site-header:not(.scrolled) .brand .txt span { color: rgba(255,255,255,.72); }
+.site-header:not(.scrolled) .nav-toggle { color: #fff; border-color: rgba(255,255,255,.4); }
+@media (min-width: 900px) {
+  .site-header:not(.scrolled) .site-nav a { color: rgba(255,255,255,.92); }
+  .site-header:not(.scrolled) .site-nav a:hover { background: rgba(255,255,255,.14); }
+  .site-header:not(.scrolled) .site-nav a.btn { color: #fff; }
+}
+
+/* ------------------------------------------------------- network activity */
+
+/* A thin bar across the top whenever a request is in flight, so nothing ever
+   looks frozen while Apps Script wakes up. Created by config.js. */
+#netBar {
+  position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 200;
+  background: transparent; pointer-events: none; opacity: 0;
+  transition: opacity .15s ease;
+}
+#netBar.on { opacity: 1; }
+#netBar::after {
+  content: ""; display: block; height: 100%; width: 34%;
+  background: linear-gradient(90deg, transparent, var(--saffron), var(--gold), transparent);
+  animation: net-slide 1s linear infinite;
+}
+@keyframes net-slide {
+  0%   { transform: translateX(-40%); }
+  100% { transform: translateX(340%); }
+}
+
+/* Inline spinner used in tables and panels while data loads. */
+.spin {
+  display: inline-block; width: 16px; height: 16px; vertical-align: -3px;
+  border: 2px solid var(--line); border-top-color: var(--saffron);
+  border-radius: 50%; animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-row { text-align: center; padding: 34px 16px; color: var(--ink-2); }
+.loading-row .spin { margin-right: 8px; }
+
+/* A row mid-delete: dimmed and untouchable until the server answers. */
+tr.row-busy { opacity: .45; pointer-events: none; }
+tr.row-busy td { text-decoration: line-through; text-decoration-color: var(--bad); }
+
+@media (prefers-reduced-motion: reduce) {
+  #netBar::after, .spin { animation: none; }
+  #netBar::after { width: 100%; }
+}
 .site-header .wrap { height: 100%; display: flex; align-items: center; gap: 14px; }
 
 .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: inherit; margin-right: auto; }
@@ -167,95 +214,91 @@ p  { margin: 0 0 1rem; }
 
 /* ------------------------------------------------------------------ hero */
 
-/* Cinematic full-bleed hero, light. The video plays edge to edge and a cream
-   veil sits over it so the Marathi type stays readable whatever the footage
-   is doing underneath — a dark reel and a bright one both work. */
 .hero {
-  position: relative; overflow: hidden; color: var(--ink);
-  min-height: min(86vh, 760px);
+  position: relative; overflow: hidden;
+  min-height: min(90vh, 780px);
   display: flex; align-items: flex-end;
-  padding: 140px 0 56px;
-  background:
-    radial-gradient(900px 420px at 75% 0%, rgba(226,115,28,.16), transparent 60%),
-    linear-gradient(170deg, var(--cream) 0%, var(--cream-2) 55%, #efe2cf 100%);
+  padding: calc(var(--header-h) + 80px) 0 64px;
+  background: var(--maroon-deep);
+  color: #fff;
 }
-@media (max-width: 700px) {
-  .hero { min-height: min(78vh, 620px); padding: 110px 0 40px; }
+@media (max-width: 760px) {
+  .hero { min-height: min(84vh, 640px); padding: calc(var(--header-h) + 48px) 0 44px; }
 }
-/* Background video, injected by hero-video.js. Nothing injected = the
-   gradient above stands on its own, which is a fine design in itself. */
+
+/* The footage, at full colour. No desaturation, no blanket opacity — the
+   scrim below does the contrast work so the video stays vivid. */
 .hero-media { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: cover; object-position: center 35%;
 }
-/* A YouTube iframe cannot be object-fit, so blow it up past the viewport and
-   centre it — that crops it to fill the way cover would. */
-.hero-media.is-frame .hero-frame {
+/* A YouTube iframe cannot object-fit, so oversize and centre it to crop. */
+.hero-media.is-frame iframe {
   position: absolute; top: 50%; left: 50%;
-  width: 100vw; height: 56.25vw;          /* 16:9 */
-  min-height: 100%; min-width: 177.78vh;  /* never leave a gap */
-  transform: translate(-50%, -50%);
-  border: 0; pointer-events: none;
+  width: 100vw; height: 56.25vw; min-height: 100%; min-width: 177.78vh;
+  transform: translate(-50%, -50%); border: 0; pointer-events: none;
 }
 
-/* The veil. Heavier top and bottom where the type sits, clearer through the
-   middle so the footage is genuinely visible — a dark reel and a bright one
-   both stay readable underneath it. */
+/* Directional, not flat. Dark where the words are, clear where the footage
+   should show. Two layers: one across, one up from the foot. */
 .hero-scrim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg,
-    rgba(253,248,241,.93) 0%,
-    rgba(253,248,241,.38) 24%,
-    rgba(253,248,241,.34) 46%,
-    rgba(253,248,241,.88) 80%,
-    rgba(253,248,241,.98) 100%);
+  background:
+    linear-gradient(100deg,
+      rgba(42,12,12,.90) 0%,
+      rgba(42,12,12,.74) 30%,
+      rgba(42,12,12,.34) 56%,
+      rgba(42,12,12,.06) 78%,
+      transparent 100%),
+    linear-gradient(to top,
+      rgba(42,12,12,.80) 0%,
+      rgba(42,12,12,.24) 26%,
+      transparent 52%);
 }
-/* No video means nothing to veil — the gradient behind stands on its own. */
-.hero:not(.has-video) .hero-scrim { display: none; }
 
-@media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
-
-.hero .wrap { position: relative; z-index: 2; }
-.hero .eyebrow { color: var(--saffron); }
+.hero-content { position: relative; z-index: 2; }
+.hero .eyebrow { color: var(--gold); }
 .hero h1 {
-  color: var(--maroon); max-width: 18ch; font-weight: 400;
-  font-size: clamp(2.1rem, 6vw, 4rem); line-height: 1.12; letter-spacing: -.01em;
+  color: #fff; max-width: 15ch; font-weight: 400;
+  font-size: clamp(2.4rem, 6.4vw, 4.4rem); line-height: 1.06; letter-spacing: -.015em;
+  text-shadow: 0 2px 26px rgba(0,0,0,.42);
 }
-.hero p { color: var(--ink); max-width: 46ch; font-size: 1.07rem; margin-top: 1.1rem; }
-/* Only over video, where the background is unpredictable. */
-.hero.has-video h1, .hero.has-video p { text-shadow: 0 1px 16px rgba(253,248,241,.9); }
-
+.hero-lead {
+  color: rgba(255,255,255,.92); max-width: 44ch;
+  font-size: 1.08rem; margin-top: 1.15rem;
+  text-shadow: 0 1px 14px rgba(0,0,0,.45);
+}
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
-/* Stats get their own strip rather than floating on the footage — numbers
-   over moving video are hard to read and make the hero look busy. */
+/* Glass tiles rather than white cards — white boxes on footage look pasted on. */
 .hero-stats {
-  position: relative; z-index: 2;
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-  margin-top: 44px; background: var(--line);
-  border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  margin-top: 46px; max-width: 760px;
+  background: rgba(255,255,255,.16);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--r-md); overflow: hidden;
+  backdrop-filter: blur(6px);
 }
-.hero-stats div { background: rgba(255,255,255,.93); padding: 16px 18px; }
+.hero-stats div { background: rgba(42,12,12,.42); padding: 16px 18px; }
 .hero-stats b {
   display: block; font-family: var(--display); font-size: 1.5rem;
-  color: var(--maroon); font-variant-numeric: tabular-nums;
+  color: #fff; font-variant-numeric: tabular-nums;
 }
 .hero-stats span {
-  font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
-  color: var(--ink-2); font-weight: 600;
+  font-size: .71rem; text-transform: uppercase; letter-spacing: .12em;
+  color: rgba(255,255,255,.72); font-weight: 600;
 }
 @media (min-width: 760px) { .hero-stats { grid-template-columns: repeat(4, 1fr); } }
 
-/* Thin scroll cue, the way cinematic heroes mark "there is more below". */
 .hero-cue {
-  position: absolute; left: 50%; bottom: 12px; z-index: 2;
+  position: absolute; left: 50%; bottom: 14px; z-index: 2;
   width: 1px; height: 36px; transform: translateX(-50%);
-  background: linear-gradient(var(--ink-2), transparent); opacity: .45;
+  background: linear-gradient(rgba(255,255,255,.7), transparent);
 }
-@media (max-width: 700px) { .hero-cue { display: none; } }
+@media (max-width: 760px) { .hero-cue { display: none; } }
 
+@media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
 /* -------------------------------------------------------------- sections */
 
 section { padding: 68px 0; }

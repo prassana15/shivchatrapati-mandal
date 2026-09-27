@@ -23,7 +23,14 @@
    which looks perfectly good on its own.
    ------------------------------------------------------------------------- */
 
-window.HERO_VIDEO = 'assets/video/hero.mp4';
+/* Pick FOOTAGE here, not a logo animation. A logo clip is designed to be
+   seen whole — in a cropped frame its lettering gets sliced and it reads as
+   broken. Procession, आरती or ढोल footage has motion and texture that still
+   looks right cropped. The logo reel is shown intact in आमच्याविषयी instead. */
+window.HERO_VIDEO = 'assets/video/utsav.mp4';
+
+/* Caption over the foot of the clip. Empty string hides it. */
+window.HERO_BADGE = 'नवरात्रौत्सव · दत्तनगर';
 
 (function () {
   'use strict';
@@ -31,11 +38,11 @@ window.HERO_VIDEO = 'assets/video/hero.mp4';
   var slot = document.getElementById('heroVideo');
   if (!slot) return;
 
-  var hero = slot.closest('.hero');
-  // Marks the hero as carrying video: turns on the cream veil and the
-  // text shadow. Removed again if the video fails to load.
-  function on() { if (hero) hero.classList.add('has-video'); }
-  function off() { if (hero) hero.classList.remove('has-video'); }
+  var badge = document.getElementById('heroBadge');
+  function on() {
+    if (badge && window.HERO_BADGE) badge.textContent = window.HERO_BADGE;
+  }
+  function off() { if (badge) badge.textContent = ''; }
 
   var url = String(window.HERO_VIDEO || '').trim();
   if (!url) return;

@@ -18,11 +18,13 @@
  *
  * Both are optional; give at least one. Name the files whatever you like.
  */
+/* reel-1 is used in the नवरात्रौत्सव section and utsav.mp4 in the hero, so
+   the grid shows the remaining clips. */
 window.REELS = [
-  { file: 'assets/video/reel-1.mp4', reel: 'https://www.instagram.com/reel/DPRLqWViO4L/' },
   { file: 'assets/video/reel-2.mp4', reel: 'https://www.instagram.com/reel/DPEsmTUCACS/' },
   { file: 'assets/video/reel-3.mp4', reel: 'https://www.instagram.com/reel/DPDOx21kXtJ/' },
-  { file: 'assets/video/reel-4.mp4', reel: 'https://www.instagram.com/reel/DPBmJ17ESc6/' }
+  { file: 'assets/video/reel-4.mp4', reel: 'https://www.instagram.com/reel/DPBmJ17ESc6/' },
+  { file: 'assets/video/hero.mp4',   reel: 'https://www.instagram.com/reel/DPVVirWCC0W/' }
 ];
 
 window.IG_PROFILE = 'https://www.instagram.com/shivchatrapati_mandal_/';

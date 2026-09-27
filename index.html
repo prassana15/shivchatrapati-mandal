@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=202609271642">
+<link rel="stylesheet" href="assets/css/style.css?v=202609271700">
 
 <script type="application/ld+json">
 {
@@ -66,16 +66,18 @@
 </header>
 
 <!-- ------------------------------------------------------------- hero -->
-<div class="hero" id="top">
-  <!-- Filled by hero-video.js from the single url set at the top of that
-       file — a repo file, a direct .mp4 link, or a YouTube video. -->
+<section class="hero" id="top">
+  <!-- Full-bleed footage. Set the clip in the first line of hero-video.js. -->
   <div class="hero-media" id="heroVideo"></div>
-  <div class="hero-scrim"></div>
+  <!-- Directional scrim: deep on the left where the type sits, clear on the
+       right so the footage is actually seen. A flat wash over the whole
+       frame is what made it look washed out before. -->
+  <div class="hero-scrim" aria-hidden="true"></div>
 
-  <div class="wrap">
+  <div class="wrap hero-content">
     <p class="eyebrow" id="heroEyebrow">२०१६ पासून · दत्तनगर, कोडोली, जि. सातारा</p>
     <h1 id="heroTitle">नवरात्रौत्सव</h1>
-    <p>
+    <p class="hero-lead">
       नऊ दिवस देवीची आराधना, गाव एकत्र आणणारा उत्सव आणि प्रत्येक रुपयाचा
       उघड हिशोब — हीच मंडळाची ओळख.
     </p>
@@ -84,7 +86,7 @@
       <a class="btn btn-light" href="#jamakharch">जमाखर्च पहा</a>
     </div>
 
-    <!-- filled live from the Sheet once the API is connected -->
+    <!-- filled live from the Sheet -->
     <div class="hero-stats" id="heroStats">
       <div><b id="hsIncome">—</b><span>एकूण जमा</span></div>
       <div><b id="hsSpent">—</b><span>एकूण खर्च</span></div>
@@ -92,8 +94,9 @@
       <div><b id="hsYear">—</b><span>उत्सव वर्ष</span></div>
     </div>
   </div>
+
   <span class="hero-cue" aria-hidden="true"></span>
-</div>
+</section>
 
 <!-- ------------------------------------------------------------ about -->
 <section id="about">
@@ -131,9 +134,9 @@
 <!-- ------------------------------------------------------------ utsav -->
 <section class="alt" id="utsav">
   <div class="wrap split">
+    <!-- utsav.mp4 now runs in the hero, so this section uses a different clip. -->
     <div class="figure"
-         data-video="assets/video/utsav.mp4"
-         data-poster="assets/img/utsav.jpg"
+         data-video="assets/video/reel-1.mp4"
          data-ig-reel="https://www.instagram.com/reel/DPVVirWCC0W/">
       <p class="muted">रील लोड होत आहे…</p>
     </div>
@@ -392,12 +395,12 @@
   </div>
 </footer>
 
-<script src="assets/js/config.js?v=202609271642"></script>
-<script src="assets/js/hero-video.js?v=202609271642"></script>
-<script src="assets/js/site.js?v=202609271642"></script>
+<script src="assets/js/config.js?v=202609271700"></script>
+<script src="assets/js/hero-video.js?v=202609271700"></script>
+<script src="assets/js/site.js?v=202609271700"></script>
 <!-- instagram.js first: it defines IGEmbed, which inline-video.js falls
      back to when an mp4 is missing. -->
-<script src="assets/js/instagram.js?v=202609271642"></script>
-<script src="assets/js/inline-video.js?v=202609271642"></script>
+<script src="assets/js/instagram.js?v=202609271700"></script>
+<script src="assets/js/inline-video.js?v=202609271700"></script>
 </body>
 </html>

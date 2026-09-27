@@ -396,7 +396,9 @@
   });
 
   function loadList() {
-    $('listCount').textContent = 'लोड होत आहे…';
+    $('listCount').innerHTML = '<span class="spin"></span> लोड होत आहे…';
+    $('tbl').innerHTML =
+      '<tr><td class="loading-row"><span class="spin"></span>नोंदी आणत आहे…</td></tr>';
     U.post({
       action: 'list', token: TOKEN, register: TAB,
       filter: { year: YEAR, q: $('q').value, from: $('from').value, to: $('to').value }
@@ -466,14 +468,32 @@
     if (!confirm('ही नोंद काढायची?\n\n' + label +
       '\n\nनोंद शीटमध्ये राहील, फक्त "काढलेली" म्हणून खूण होईल.')) return;
 
+    // Grey the row out straight away so the delete feels immediate, then
+    // drop it locally on success instead of refetching the whole register.
+    var tr = btn.closest('tr');
+    if (tr) tr.classList.add('row-busy');
     btn.disabled = true;
+    btn.innerHTML = '<span class="spin"></span>';
+
     U.post({ action: 'remove', token: TOKEN, register: TAB, id: row.ID })
       .then(function (r) {
         if (fail(r)) return;
-        if (!r.ok) { alert(r.error); btn.disabled = false; return; }
-        loadList();
+        if (!r.ok) { undo(); alert(r.error); return; }
+
+        var i = ROWS.indexOf(row);
+        if (i > -1) ROWS.splice(i, 1);
+        render({
+          rows: ROWS, count: ROWS.length,
+          total: ROWS.reduce(function (s, x) { return s + (Number(x.Amount) || 0); }, 0)
+        });
       })
-      .catch(function () { btn.disabled = false; alert('काढता आले नाही.'); });
+      .catch(function () { undo(); alert('काढता आले नाही. पुन्हा प्रयत्न करा.'); });
+
+    function undo() {
+      if (tr) tr.classList.remove('row-busy');
+      btn.disabled = false;
+      btn.textContent = 'काढा';
+    }
   }
 
   /* CSV of exactly what is on screen, so a filtered view prints correctly. */
