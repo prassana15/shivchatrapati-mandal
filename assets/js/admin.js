@@ -6,6 +6,42 @@
   var TOKEN = null, USER = null, CFG = null, TAB = 'members', EDITING = null;
   var ROWS = [], YEAR = null;
 
+  /* Every piece of Marathi the UI shows lives HERE, in the browser — never
+     in the Apps Script. Server-side text has to survive a clipboard paste
+     into the Apps Script editor, and that round trip kept mangling it. The
+     API now only supplies data; all wording is rendered here. */
+
+  var REG_LABELS = {
+    members:  'सभासद वर्गणी',
+    area:     'क्षेत्र वर्गणी',
+    sponsors: 'देणगी',
+    expenses: 'खर्च'
+  };
+
+  var PURPOSES = [
+    'देवीची मूर्ती', 'आरास व सजावट', 'मंडप', 'लाईट व डेकोरेशन',
+    'महाप्रसाद / भोजन', 'पूजा साहित्य', 'ढोल पथक', 'साऊंड / डीजे',
+    'फटाके', 'क्रीडा स्पर्धा बक्षीस', 'आरोग्य शिबिर', 'इतर'
+  ];
+
+  /* Stored in the sheet as ASCII keys so the server can compare them
+     reliably; shown to कार्यकर्ते in Marathi. */
+  var KINDS = [
+    { value: 'CASH',  label: 'रक्कम' },
+    { value: 'GOODS', label: 'वस्तू' }
+  ];
+
+  function kindLabel(v) {
+    for (var i = 0; i < KINDS.length; i++) {
+      if (KINDS[i].value === v) return KINDS[i].label;
+    }
+    return v || '';
+  }
+
+  function regLabel(tab) {
+    return REG_LABELS[tab] || (CFG.registers[tab] && CFG.registers[tab].label) || tab;
+  }
+
   /* Marathi labels for the English column keys the sheet uses. */
   var LABELS = {
     Date: 'तारीख', Name: 'नाव', Amount: 'रक्कम', Mode: 'पद्धत',
@@ -202,7 +238,7 @@
     showYearBanner();
     if (summary) { loadSummary(); return; }
 
-    $('listTitle').textContent = CFG.registers[tab].label + ' — ' + YEAR;
+    $('listTitle').textContent = regLabel(tab) + ' — ' + YEAR;
     buildForm();
     loadList();
   }
@@ -252,13 +288,18 @@
     $('formFields').innerHTML = list + yearField + fields.map(function (f) {
       var id = 'f_' + f, input;
       if (f === 'Mode' || f === 'Purpose' || f === 'Kind') {
-        var opts = f === 'Mode' ? CFG.modes
-          : f === 'Purpose' ? (CFG.purposes || [])
-          : (CFG.kinds || []);
+        // Marathi comes from this file, not the API — see REG_LABELS above.
+        var opts = f === 'Mode' ? (CFG.modes || []).map(function (m) {
+              return { value: m, label: m };
+            })
+          : f === 'Purpose' ? PURPOSES.map(function (p) {
+              return { value: p, label: p };
+            })
+          : KINDS;
         input = '<select id="' + id + '">' +
           (f === 'Purpose' ? '<option value="">— निवडा —</option>' : '') +
-          opts.map(function (m) {
-            return '<option value="' + U.esc(m) + '">' + U.esc(m) + '</option>';
+          opts.map(function (o) {
+            return '<option value="' + U.esc(o.value) + '">' + U.esc(o.label) + '</option>';
           }).join('') + '</select>';
       } else if (f === 'Karyakarta') {
         // A list, not a locked dropdown — a new कार्यकर्ता can be typed in
@@ -280,7 +321,7 @@
         (REQUIRED[f] ? ' *' : '') + '</label>' + input + '</div>';
     }).join('');
     $('f_Date').value = CFG.today;
-    $('formTitle').textContent = 'नवीन नोंद — ' + CFG.registers[TAB].label;
+    $('formTitle').textContent = 'नवीन नोंद — ' + regLabel(TAB);
   }
 
   $('saveBtn').addEventListener('click', function () {
@@ -385,6 +426,7 @@
         var tds = cols.map(function (c) {
           if (c === 'Amount') return '<td class="amt">' + U.money(row.Amount) + '</td>';
           if (c === 'Date') return '<td>' + U.esc(U.dateOut(row.Date)) + '</td>';
+          if (c === 'Kind') return '<td>' + U.esc(kindLabel(row.Kind)) + '</td>';
           if (c === 'Phone') {
             // Tappable on a phone, so a कार्यकर्ता can ring a वर्गणीदार back.
             return row.Phone
